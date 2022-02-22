@@ -18,9 +18,16 @@ git clone https://github.com/iangohy/wHeReGotTimeFind.git
 
 When working on a new feature, create a new branch in the following format `<name>-<featurename>` with the following command:
 ```
+# Get updated main branch
+git checkout main
+git pull origin main
+
+# Create new branch
 git checkout -b <name>-<featurename>
 
 # Example
+git checkout main
+git pull origin main
 git checkout -b tom-test
 ```
 
