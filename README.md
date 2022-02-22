@@ -2,6 +2,7 @@
 
 ## Members
  - [Ian Goh](https://github.com/iangohy)
+ - [Tham Jit](https://github.com/asdfash)
  - [Jonah Yeo](https://github.com/J-onah)
  -
  -
