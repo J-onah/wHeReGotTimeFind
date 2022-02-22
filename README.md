@@ -1,7 +1,13 @@
 # wHeReGotTimeFind
 
 ## Members
-[Ian Goh](https://github.com/iangohy)
+ - [Ian Goh](https://github.com/iangohy)
+ - 
+ -
+ -
+ -
+ -
+ -
 
 ## Collaborating
 Clone the repository using `git clone`:
