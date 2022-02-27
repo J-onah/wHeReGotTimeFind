@@ -7,8 +7,8 @@
  - [Tan Li Hui](https://github.com/t-lihui)
  - [Yong Zheng Yew](https://github.com/YongZhengYew)
  - [Kevin Teng](https://github.com/lemons4lyf)
- -
- -
+ - [Yang Haocheng](https://github.com/yhc-666)
+ 
 
 ## Collaborating
 Clone the repository using `git clone`:
