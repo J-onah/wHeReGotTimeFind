@@ -13,7 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class BackendApi {
-    private static final String API_ENDPOINT = "";
+    private static final String API_ENDPOINT = "https://gist.githubusercontent.com/";
+    // TODO: Update to actual database URL
+    // ****** FOR TESTING ONLY ***
+    // ****** END FOR TESTING ONLY ***
+    // private static final String API_ENDPOINT = "";
     private static final String TAG = "backend_api";
     private static Call<FullReviewResponse> call;
 
