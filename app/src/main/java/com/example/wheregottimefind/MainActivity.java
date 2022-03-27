@@ -1,7 +1,11 @@
 package com.example.wheregottimefind;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.wheregottimefind.backendAPI.AsyncUpdate;
+import com.example.wheregottimefind.backendAPI.BackendApi;
+import com.example.wheregottimefind.backendAPI.FullReview;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.wheregottimefind.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static String TAG = "main_activity";
     private ActivityMainBinding binding;
 
     @Override
@@ -32,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        BackendApi.getReviewsByName(new AsyncUpdate() {
+            @Override
+            public void updateOnDataReceived(FullReview[] fullReviews) {
+                Log.d(TAG, "Received data!");
+                for (FullReview fullreview: fullReviews) {
+                    Log.d(TAG, fullreview.toString());
+                }
+            }
+        });
     }
 
 }
