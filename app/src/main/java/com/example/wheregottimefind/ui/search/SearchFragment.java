@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.wheregottimefind.backendAPI.AsyncUpdate;
+import com.example.wheregottimefind.backendAPI.BackendApi;
+import com.example.wheregottimefind.backendAPI.FullReview;
 import com.example.wheregottimefind.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
@@ -41,6 +44,20 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Log.i(TAG, "Search submitted with query: " + s);
+                BackendApi.getReviewsByName(new AsyncUpdate() {
+                    @Override
+                    public void updateOnDataReceived(FullReview[] fullReviews) {
+                        Log.d(TAG, "Received data!");
+                        String fullString = "";
+                        for (FullReview fullreview: fullReviews) {
+                            Log.d(TAG, fullreview.toString());
+                            fullString += fullreview.toString() + "\n";
+                        }
+
+                        // Update view
+                        textView.setText(fullString);
+                    }
+                });
                 return true;
             }
         });
