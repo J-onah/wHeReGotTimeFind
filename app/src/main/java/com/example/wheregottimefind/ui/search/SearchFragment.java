@@ -5,13 +5,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.wheregottimefind.R;
+import com.example.wheregottimefind.ResultFragment;
 import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
 import com.example.wheregottimefind.backendAPI.FullReview;
@@ -33,6 +40,12 @@ public class SearchFragment extends Fragment {
         final TextView textView = binding.textSearch;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+        Button change_fragment = binding.changeSearchFragment;
+        change_fragment.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment);
+        });
+
+
         SearchView searchBar = binding.searchBar;
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
@@ -44,19 +57,16 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Log.i(TAG, "Search submitted with query: " + s);
-                BackendApi.getReviewsByName(new AsyncUpdate() {
-                    @Override
-                    public void updateOnDataReceived(FullReview[] fullReviews) {
-                        Log.d(TAG, "Received data!");
-                        String fullString = "";
-                        for (FullReview fullreview: fullReviews) {
-                            Log.d(TAG, fullreview.toString());
-                            fullString += fullreview.toString() + "\n";
-                        }
-
-                        // Update view
-                        textView.setText(fullString);
+                BackendApi.getReviewsByName(fullReviews -> {
+                    Log.d(TAG, "Received data!");
+                    String fullString = "";
+                    for (FullReview fullreview: fullReviews) {
+                        Log.d(TAG, fullreview.toString());
+                        fullString += fullreview + "\n";
                     }
+
+                    // Update view
+                    textView.setText(fullString);
                 });
                 return true;
             }

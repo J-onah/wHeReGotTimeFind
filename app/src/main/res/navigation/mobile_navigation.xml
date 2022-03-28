@@ -9,7 +9,11 @@
         android:id="@+id/navigation_search"
         android:name="com.example.wheregottimefind.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_myreviews"
@@ -22,4 +26,9 @@
         android:name="com.example.wheregottimefind.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.wheregottimefind.ResultFragment"
+        android:label="Search Results"
+        tools:layout="@layout/fragment_result" />
 </navigation>
