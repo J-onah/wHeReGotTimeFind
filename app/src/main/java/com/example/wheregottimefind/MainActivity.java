@@ -2,6 +2,7 @@ package com.example.wheregottimefind;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
@@ -15,11 +16,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.wheregottimefind.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private static String TAG = "main_activity";
     private ActivityMainBinding binding;
     NavController navController;
+    FloatingActionButton addReviewFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +40,19 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        addReviewFab = findViewById(R.id.fab);
+        addReviewFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "FAB Clicked!");
+                navController.navigate(R.id.newReviewFragment);
+            }
+        });
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
-
-
 }

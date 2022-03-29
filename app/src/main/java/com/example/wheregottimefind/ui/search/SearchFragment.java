@@ -11,15 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.ResultFragment;
-import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
 import com.example.wheregottimefind.backendAPI.FullReview;
 import com.example.wheregottimefind.databinding.FragmentSearchBinding;
