@@ -1,4 +1,4 @@
-package com.example.wheregottimefind.backendAPI;
+package com.example.wheregottimefind.pojo;
 
 public class FullReview {
     private Vendor vendor;

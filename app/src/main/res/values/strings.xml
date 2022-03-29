@@ -7,4 +7,8 @@
     <string name="fab">Add new review</string>
     <string name="result_fragment">This is the result fragment</string>
     <string name="new_review">New review fragment</string>
+    <string name="vendor_details">Vendor Details</string>
+    <string name="vendor_name">Vendor name</string>
+    <string name="vendor_location">Address</string>
+    <string name="vendor_phone_no">Phone number</string>
 </resources>

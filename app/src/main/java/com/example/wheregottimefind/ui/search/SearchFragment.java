@@ -16,7 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.backendAPI.BackendApi;
-import com.example.wheregottimefind.backendAPI.FullReview;
+import com.example.wheregottimefind.pojo.FullReview;
 import com.example.wheregottimefind.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {

@@ -1,16 +1,13 @@
 package com.example.wheregottimefind;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.example.wheregottimefind.backendAPI.AsyncUpdate;
-import com.example.wheregottimefind.backendAPI.BackendApi;
-import com.example.wheregottimefind.backendAPI.FullReview;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -41,12 +38,25 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        // FAB to add new review
         addReviewFab = findViewById(R.id.fab);
         addReviewFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "FAB Clicked!");
                 navController.navigate(R.id.newReviewFragment);
+            }
+        });
+
+        // Hide bottom navigation when adding new review
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(NavController controller,
+                                             NavDestination destination, Bundle arguments) {
+                if (destination.getId() == R.id.newReviewFragment) {
+                    navView.setVisibility(View.GONE);
+                } else {
+                    navView.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

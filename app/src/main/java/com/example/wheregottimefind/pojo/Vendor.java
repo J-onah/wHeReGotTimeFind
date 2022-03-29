@@ -1,4 +1,4 @@
-package com.example.wheregottimefind.backendAPI;
+package com.example.wheregottimefind.pojo;
 
 public class Vendor {
     private String name;
@@ -29,11 +29,7 @@ public class Vendor {
 
     @Override
     public String toString() {
-        return "Vendor{" +
-                "name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", phone_no=" + phone_no +
-                '}';
+        return name;
     }
 
     public int getPhone_no() {

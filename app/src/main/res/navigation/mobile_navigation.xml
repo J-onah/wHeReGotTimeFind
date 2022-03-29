@@ -28,12 +28,12 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.example.wheregottimefind.ResultFragment"
+        android:name="com.example.wheregottimefind.ui.search.ResultFragment"
         android:label="Search Results"
         tools:layout="@layout/fragment_result" />
     <fragment
         android:id="@+id/newReviewFragment"
-        android:name="com.example.wheregottimefind.NewReviewFragment"
+        android:name="com.example.wheregottimefind.ui.search.NewReviewFragment"
         android:label="New Review"
         tools:layout="@layout/fragment_newreview" />
 </navigation>
