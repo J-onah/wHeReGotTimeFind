@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NewReviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class NewReviewFragment extends Fragment {
+    FloatingActionButton fab;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +61,16 @@ public class NewReviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        fab = getActivity().findViewById(R.id.fab);
+        fab.hide();
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_review, container, false);
+        return inflater.inflate(R.layout.fragment_newreview, container, false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        fab.show();
     }
 }

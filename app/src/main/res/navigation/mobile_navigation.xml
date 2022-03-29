@@ -34,6 +34,6 @@
     <fragment
         android:id="@+id/newReviewFragment"
         android:name="com.example.wheregottimefind.NewReviewFragment"
-        android:label="fragment_new_review"
-        tools:layout="@layout/fragment_new_review" />
+        android:label="New Review"
+        tools:layout="@layout/fragment_newreview" />
 </navigation>
