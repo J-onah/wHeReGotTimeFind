@@ -37,7 +37,10 @@ public class SearchFragment extends Fragment {
 
         Button change_fragment = binding.changeSearchFragment;
         change_fragment.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment);
+            int id = 8080;
+            Bundle args = new Bundle();
+            args.putInt("id", id);
+            Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
         });
 
 

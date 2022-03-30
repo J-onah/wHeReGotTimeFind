@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.wheregottimefind.R;
 
@@ -16,6 +18,8 @@ import com.example.wheregottimefind.R;
  * create an instance of this fragment.
  */
 public class ResultFragment extends Fragment {
+    final static String TAG = "result_fragment";
+    int id;
     public ResultFragment() {
         // Required empty public constructor
     }
@@ -29,9 +33,10 @@ public class ResultFragment extends Fragment {
      * @return A new instance of fragment ResultFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ResultFragment newInstance(String param1, String param2) {
+    public static ResultFragment newInstance(int id) {
         ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
+        args.putInt("id", id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,7 +49,18 @@ public class ResultFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (getArguments() != null) {
+            id = getArguments().getInt("id");
+            Log.i(TAG, String.valueOf(id));
+        } else {
+            Log.i(TAG, "No arguments received");
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_result, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_result, container, false);
+
+        TextView result_fragment_text = rootView.findViewById(R.id.result_fragment_text);
+        result_fragment_text.setText("Result fragment got id: " + String.valueOf(id));
+
+        return rootView;
     }
 }

@@ -7,6 +7,7 @@
     tools:context=".ui.search.ResultFragment">
 
     <TextView
+        android:id="@+id/result_fragment_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/result_fragment"
