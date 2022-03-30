@@ -19,7 +19,7 @@ import com.example.wheregottimefind.R;
  */
 public class ResultFragment extends Fragment {
     final static String TAG = "result_fragment";
-    int id;
+    String vendor_name;
     public ResultFragment() {
         // Required empty public constructor
     }
@@ -36,7 +36,6 @@ public class ResultFragment extends Fragment {
     public static ResultFragment newInstance(int id) {
         ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
-        args.putInt("id", id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,8 +49,8 @@ public class ResultFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (getArguments() != null) {
-            id = getArguments().getInt("id");
-            Log.i(TAG, String.valueOf(id));
+            vendor_name = getArguments().getString("vendor_name");
+            Log.i(TAG, String.valueOf(vendor_name));
         } else {
             Log.i(TAG, "No arguments received");
         }
@@ -59,7 +58,7 @@ public class ResultFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_result, container, false);
 
         TextView result_fragment_text = rootView.findViewById(R.id.result_fragment_text);
-        result_fragment_text.setText("Result fragment got id: " + String.valueOf(id));
+        result_fragment_text.setText("Result fragment got vendor name: " + String.valueOf(vendor_name));
 
         return rootView;
     }

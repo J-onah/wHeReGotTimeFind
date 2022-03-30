@@ -27,6 +27,7 @@ public class BackendApi {
      * @param updater an object implementing the AsyncUpdate updater, called on data received
      */
 
+
     public static void getReviewsByName(AsyncUpdate updater) {
         getData("getReviewsByName", updater);
     }
