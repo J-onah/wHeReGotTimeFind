@@ -2,6 +2,7 @@ package com.example.wheregottimefind.ui.login;
 
 import android.app.Activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.wheregottimefind.MainActivity;
 import com.example.wheregottimefind.R;
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText verificationCodeEditText = binding.verificationCode;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
