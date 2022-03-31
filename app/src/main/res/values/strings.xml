@@ -24,4 +24,27 @@
     <string name="login_failed">"Login failed"</string>
     <string name="profile_display_name">Display Name</string>
     <string name="profile_userid">user_id</string>
+    
+    
+    
+    
+    
+    <!-- TO COMMIT 31 03 22-->
+
+    <string name="large_text">     </string>
+    <string name="action_settings">Settings</string>
+    <string name="reviews">No reviews currently \n</string>
+    <string name="VendorName">POPULAR</string>
+    <string name="VendorLocation">Address: </string>
+    <string name="VendorPhoneNo">Phone No.: </string>
+    <string name="reviews_header"> REVIEWS </string>
+
+    <string name="PRODUCT_NAME">PRODUCT_NAME</string>
+    <string name="USERNAME">USERNAME</string>
+    <string name="UnitsPurchased">Units Purchased: sadsadasdasdasdasd</string>
+    <string name="Unit">Unit: </string>
+    <string name="Price_Per_Unit">Price per unit: </string>
+
+    <!-- -->
+
 </resources>
