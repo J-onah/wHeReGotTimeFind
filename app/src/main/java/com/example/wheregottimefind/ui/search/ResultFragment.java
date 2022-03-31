@@ -29,18 +29,11 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     String vendor_name;
     
     
-    
-    
-    
-    
-    /////////// TO COMMIT 31-03-22 ////////////////////
-
     ArrayList<String> reviews_for_vendor = new ArrayList<>();
     ArrayList<String> reviews_for_vendor_TRUNCATE = new ArrayList<>();
     RecyclerView recyclerViewReviews;
     ArrayList<String> users_by_reviews = new ArrayList<>();
     ArrayList<String> ProductName = new ArrayList<>();
-    //ArrayList<Integer> ProductImages = new ArrayList<Integer>();
     ArrayList<String[]> ProductImages = new ArrayList<String[]>();
     ArrayList<Integer> UnitsPurchased = new ArrayList<Integer>();
     ArrayList<String> Unit = new ArrayList<String>();
@@ -50,10 +43,6 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     TextView VendorName, VendorLocation, VendorPhoneNo;
     TextView reviews;
 
-    ///////////////////////////////////////////////
-    
-    
-    
     
     
     
@@ -123,8 +112,6 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         
         
         
-        /////////// TO COMMIT 31-03-22
-        /////////////////////
 
         //////////////////// RECYCLERVIEW, To have a template for each review
         ///////////////////////////////////////////////////////////////////////////////////
@@ -264,8 +251,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         }
 
         //https://www.youtube.com/watch?v=18VcnYN5_LM
-        /////////////////////////////////////////////////////////////////////////////////////
-
+ 
 
 
         return rootView;
@@ -279,7 +265,6 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     public void onReviewClick(int position, ReviewAdaptor_ToCommit reviewAdaptor) {
         Log.i("ResultFragment: ", "Review Clicked");
         Log.i("ResultFragment: ", Integer.toString(position));
-        //reviews_for_vendor
 
         String temp = "";
         temp = reviews_for_vendor_TRUNCATE.get(position);
@@ -302,14 +287,14 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
         users_by_reviews = new ArrayList<>();
         ProductName = new ArrayList<>();
-        //ArrayList<Integer> ProductImages = new ArrayList<Integer>();
+
         ProductImages = new ArrayList<String[]>();
         UnitsPurchased = new ArrayList<Integer>();
         Unit = new ArrayList<String>();
         Price_Per_Unit = new ArrayList<Double>();
         ReviewRating = new ArrayList<Integer>();
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
     
     
     
