@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
+        final EditText verificationCodeEditText = binding.verificationCode;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
 
@@ -73,7 +74,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
+                    if (R.string.not_registered == loginResult.getError()) {
+                        showVerificationCode();
+                    } else {
+                        showLoginFailed(loginResult.getError());
+                    }
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
@@ -119,9 +124,15 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                loadingProgressBar.setVisibility(TextView.VISIBLE);
+                if (verificationCodeEditText.getText().toString().isEmpty()) {
+                    loginViewModel.login(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString());
+                } else {
+                    loginViewModel.login(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString(),
+                            verificationCodeEditText.getText().toString());
+                }
             }
         });
     }
@@ -138,5 +149,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showVerificationCode() {
+        System.out.println("verification code");
+        EditText verification_code = findViewById(R.id.verification_code);
+        verification_code.setVisibility(TextView.VISIBLE);
     }
 }

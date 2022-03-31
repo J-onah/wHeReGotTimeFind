@@ -18,17 +18,31 @@ public class LoginDataSource {
             int atIndex = username.indexOf('@');
             if (atIndex == -1) {
                 throw new IllegalAccessException("No @ in username");
-            } else {
+            } else if (username.endsWith("sutd.edu.sg")) {
                 displayName = capitaliseName(username.substring(0, atIndex));
+            } else {
+                throw new IllegalAccessException("Does not end with sutd.edu.sg");
             }
 
-            LoggedInUser fakeUser =
-                    new LoggedInUser(
-                            java.util.UUID.randomUUID().toString(),
-                            displayName);
-            return new Result.Success<>(fakeUser);
+            // Force registration
+            return new Result.NotRegistered(new IllegalAccessException("User not registered!"));
+
+//            LoggedInUser fakeUser =
+//                    new LoggedInUser(
+//                            java.util.UUID.randomUUID().toString(),
+//                            displayName);
+//
+//            return new Result.Success<>(fakeUser);
         } catch (Exception e) {
             return new Result.Error(new IOException("Error logging in", e));
+        }
+    }
+
+    public Result<LoggedInUser> register(String username, String password, String verificationCode) {
+        if ("123456".equals(verificationCode)) {
+            return login(username, password);
+        } else {
+            return new Result.WrongVerification(new IOException("Error logging in"));
         }
     }
 
