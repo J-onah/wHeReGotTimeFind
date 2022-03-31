@@ -65,10 +65,6 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
 
-        final String NIL = "NIL";
-
-        String unitText, unitsPurchasedText, PricePerUnitText, product_nameText;
-        String reviewsByUsernameText;
 
 
         try{
