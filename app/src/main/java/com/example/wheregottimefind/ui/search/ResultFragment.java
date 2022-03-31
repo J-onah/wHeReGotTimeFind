@@ -3,6 +3,8 @@ package com.example.wheregottimefind.ui.search;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wheregottimefind.R;
+import com.example.wheregottimefind.ReviewAdaptor_ToCommit;
+import com.example.wheregottimefind.pojo.Review;
+import com.example.wheregottimefind.pojo.Vendor;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
