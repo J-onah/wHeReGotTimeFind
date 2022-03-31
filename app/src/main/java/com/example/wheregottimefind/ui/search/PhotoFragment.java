@@ -18,8 +18,6 @@ import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.ReviewImagesAdaptor;
 
 
-
-///////////////////////////////////////////// TO COMMIT 31-03-22
 public class PhotoFragment extends Fragment{
 
 
@@ -106,7 +104,7 @@ public class PhotoFragment extends Fragment{
             }
 
             //https://www.youtube.com/watch?v=18VcnYN5_LM
-            /////////////////////////////////////////////////////////////////////////////////////
+ 
 
             
 
@@ -127,7 +125,6 @@ public class PhotoFragment extends Fragment{
         ProductImages = null; 
        
     }
-    ///////////////////
 
 
 }
