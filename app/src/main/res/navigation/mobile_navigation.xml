@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_result" />
     <fragment
         android:id="@+id/newReviewFragment"
-        android:name="com.example.wheregottimefind.ui.search.NewReviewFragment"
+        android:name="com.example.wheregottimefind.NewReviewFragment"
         android:label="New Review"
         tools:layout="@layout/fragment_newreview" />
 </navigation>
