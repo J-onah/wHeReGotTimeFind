@@ -47,7 +47,7 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
     @Override
     public ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.review_box_template, parent, false);
+        View view = inflater.inflate(R.layout.photos_template, parent, false);
 
         screen_width = view.getWidth();
 
