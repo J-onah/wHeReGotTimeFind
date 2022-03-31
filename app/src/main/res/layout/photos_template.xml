@@ -9,7 +9,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#ff202020">
+    android:background="#ff202020"
+    tools:showIn="@layout/photo_fragment">
 
 
 
