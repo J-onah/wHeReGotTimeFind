@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.PhotoFragment">
 
-    <!-- To commit 31 03 22 -->
-
     <Button
         android:id="@+id/PhotoFragmentOutButton"
         android:layout_width="match_parent"
