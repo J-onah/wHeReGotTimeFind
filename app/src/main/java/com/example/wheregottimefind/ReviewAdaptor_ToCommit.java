@@ -1,9 +1,3 @@
-////////////////
-///////////////
-/////////////////
-//////TO COMMIT 29-03-22
-
-
 package com.example.wheregottimefind;
 
 
@@ -29,8 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 //https://www.youtube.com/watch?v=18VcnYN5_LM
-
-
 
 public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_ToCommit.ReviewViewHolder> {
 
@@ -133,7 +125,7 @@ public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_T
 
         }
         catch(IndexOutOfBoundsException ex){
-            holder.ProductImage.setImageResource(R.drawable.test);
+            holder.ProductImage.setImageResource(R.drawable.blank_extreme_small);
         }
 
         try{
@@ -262,6 +254,3 @@ public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_T
 
 
 }
-
-
-// TO COMMIT 29-03-22
