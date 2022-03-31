@@ -18,8 +18,6 @@
     
     
     
-    
-    <!--To commit 31 03 22 -->
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.wheregottimefind.ui.search.ResultFragment"
@@ -36,8 +34,7 @@
         android:label="Photos"
         tools:layout="@layout/photo_fragment" />
 
-    <!-- To Commit 31 03 22 -->
-    
+ 
     
     
     
