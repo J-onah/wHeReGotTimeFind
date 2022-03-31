@@ -2,6 +2,8 @@ package com.example.wheregottimefind.backendAPI;
 
 import android.util.Log;
 
+import com.example.wheregottimefind.pojo.FullReview;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,13 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class BackendApi {
-    private static final String API_ENDPOINT = "https://gist.githubusercontent.com/";
-    // TODO: Update to actual database URL
-    // ****** FOR TESTING ONLY ***
-    // ****** END FOR TESTING ONLY ***
-    // private static final String API_ENDPOINT = "";
+    private static final String API_ENDPOINT = "https://safe-coast-45446.herokuapp.com/";
     private static final String TAG = "backend_api";
-    private static Call<FullReviewResponse> call;
+    private static Call<FullReview[]> call;
 
     /**
      * Asynchronously obtains reviews from database, searched by name
@@ -28,8 +26,8 @@ public class BackendApi {
      */
 
 
-    public static void getReviewsByName(AsyncUpdate updater) {
-        getData("getReviewsByName", updater);
+    public static void getReviewsByName(String productName, AsyncUpdate updater) {
+        getData(productName, "getReviewsByProductName", updater);
     }
 
     /**
@@ -39,27 +37,28 @@ public class BackendApi {
      * @param updater   an object implementing the AsyncUpdate updater, called on data received
      */
     
-    private static void getData(String queryType, AsyncUpdate updater) {
+    private static void getData(String productName, String queryType, AsyncUpdate updater) {
+        Log.i(TAG, "Fetching querytype " + queryType + " with query " + productName);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
-        if (queryType == "getReviewsByName") {
-            call = request.getReviewsByName();
+        if (queryType == "getReviewsByProductName") {
+            call = request.getReviewsByProductName(productName);
         } else throw new IllegalArgumentException("Backend query type not found!");
 
-        call.enqueue(new Callback<FullReviewResponse>() {
+        call.enqueue(new Callback<FullReview[]>() {
             @Override
-            public void onResponse(Call<FullReviewResponse> call, Response<FullReviewResponse> response) {
+            public void onResponse(Call<FullReview[]> call, Response<FullReview[]> response) {
                 Log.d(TAG, "Response received!");
-                FullReviewResponse fullReviews = response.body();
+                FullReview[] fullReviews = response.body();
 //                System.out.println(fullReviews.getFullReviews().length);
-                updater.updateOnDataReceived(fullReviews.getFullReviews());
+                updater.updateOnDataReceived(fullReviews);
             }
 
             @Override
-            public void onFailure(Call<FullReviewResponse> call, Throwable t) {
+            public void onFailure(Call<FullReview[]> call, Throwable t) {
                 Log.d(TAG, "Failed to get response! " + t.getMessage());
             }
         });
