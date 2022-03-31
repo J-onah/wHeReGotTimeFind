@@ -117,7 +117,7 @@ public class PhotoFragment extends Fragment{
                 //Bundle args = new Bundle();
                 //args.putString("vendor_name", vendor_name);
                 //Navigation.findNavController(rootView).navigate(R.id.action_navigation_search_to_resultFragment, args);
-                Toast.makeText(getActivity(), "No Images Available", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "No Images Available", Toast.LENGTH_SHORT).show();
             }
 
             //https://www.youtube.com/watch?v=18VcnYN5_LM
