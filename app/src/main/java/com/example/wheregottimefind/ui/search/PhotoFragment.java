@@ -35,9 +35,6 @@ public class PhotoFragment extends Fragment{
 
 
 
-        /////////// TO COMMIT 29-03-22, MIGHT NOT NEED
-
-
         RecyclerView recyclerViewPhotos;
 
         String[] ProductImages;
@@ -63,7 +60,7 @@ public class PhotoFragment extends Fragment{
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ResultFragment.
+         * @return A new instance of fragment PhotoFragment.
          */
         // TODO: Rename and change types and number of parameters
         public static com.example.wheregottimefind.ui.search.PhotoFragment newInstance(String param1, String param2) {
@@ -84,7 +81,7 @@ public class PhotoFragment extends Fragment{
                                  Bundle savedInstanceState) {
             if (getArguments() != null) {
                 vendor_name = getArguments().getString("vendor_name");
-                ProductImages = getArguments().getStringArray("ProductImages");
+                ProductImages = getArguments().getStringArray("ProductImages");   ///////// WARNING: if working then okay.
                 Log.i(TAG, String.valueOf(vendor_name));
             } else {
                 Log.i(TAG, "No arguments received");
@@ -97,16 +94,7 @@ public class PhotoFragment extends Fragment{
 
 
 
-        /* /////////////// GENERAL CODES
-
-        //ArrayList<FullReview> ListOfFullReviewObj = FullReviewData.getAllReviewsByVendor(vendor_name);
-
-        ProductImages.add(.);
-
-        for(FullReview eachFullReview: ListOfFullReviewObj) {
-
-        }
-        */
+        
 
 
             PhotoFragmentOutButton = rootView.findViewById(R.id.PhotoFragmentOutButton);
@@ -153,6 +141,15 @@ public class PhotoFragment extends Fragment{
 
 
         }
+    
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        
+        ProductImages = null; 
+       
+    }
+    ///////////////////
 
 
 }
