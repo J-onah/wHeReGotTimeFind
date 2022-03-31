@@ -19,13 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
- ////////////////
-///////////////
-/////////////////
-//////TO COMMIT 29-03-22
-
-
-
+ 
 
 public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdaptor.ReviewViewHolder> {
 
@@ -125,6 +119,3 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
 
 
 }
-
-
-// TO COMMIT 29-03-22
