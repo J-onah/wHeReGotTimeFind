@@ -12,6 +12,11 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
         String displayName;
 
+        // Registration logic
+        if (username.equals("new_user@sutd.edu.sg")) {
+            return new Result.NotRegistered(new IllegalAccessException("User not registered!"));
+        }
+
         try {
             // TODO: handle loggedInUser authentication
             // Get front part of email
@@ -24,23 +29,43 @@ public class LoginDataSource {
                 throw new IllegalAccessException("Does not end with sutd.edu.sg");
             }
 
-            // Force registration
-            return new Result.NotRegistered(new IllegalAccessException("User not registered!"));
+            LoggedInUser fakeUser =
+                    new LoggedInUser(
+                            java.util.UUID.randomUUID().toString(),
+                            displayName);
 
-//            LoggedInUser fakeUser =
-//                    new LoggedInUser(
-//                            java.util.UUID.randomUUID().toString(),
-//                            displayName);
-//
-//            return new Result.Success<>(fakeUser);
+            return new Result.Success<>(fakeUser);
         } catch (Exception e) {
             return new Result.Error(new IOException("Error logging in", e));
         }
     }
 
     public Result<LoggedInUser> register(String username, String password, String verificationCode) {
+        String displayName;
+
         if ("123456".equals(verificationCode)) {
-            return login(username, password);
+            System.out.println("register call login");
+            try {
+                // TODO: handle loggedInUser authentication
+                // Get front part of email
+                int atIndex = username.indexOf('@');
+                if (atIndex == -1) {
+                    throw new IllegalAccessException("No @ in username");
+                } else if (username.endsWith("sutd.edu.sg")) {
+                    displayName = capitaliseName(username.substring(0, atIndex));
+                } else {
+                    throw new IllegalAccessException("Does not end with sutd.edu.sg");
+                }
+
+                LoggedInUser fakeUser =
+                        new LoggedInUser(
+                                java.util.UUID.randomUUID().toString(),
+                                displayName);
+
+                return new Result.Success<>(fakeUser);
+            } catch (Exception e) {
+                return new Result.Error(new IOException("Error logging in", e));
+            }
         } else {
             return new Result.WrongVerification(new IOException("Error logging in"));
         }
