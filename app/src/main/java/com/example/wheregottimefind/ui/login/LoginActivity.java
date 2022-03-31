@@ -6,7 +6,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -35,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+    private final String TAG = "login_activity_tag";
+    SharedPreferences sharedPref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,18 @@ public class LoginActivity extends AppCompatActivity {
         final EditText verificationCodeEditText = binding.verificationCode;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+        sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
+        // Check SharedPreferences and auto login
+        String display_name = sharedPref.getString(getString(R.string.display_name_key), "");
+        String userid = sharedPref.getString(getString(R.string.userid_key), "");
+
+//        Log.i(TAG, "[SharedPref] display_name: " + display_name);
+//        Log.i(TAG, "[SharedPref] userid: " + userid);
+
+        if (!userid.isEmpty() && !display_name.isEmpty()) {
+            goToMainActivity(display_name, userid);
+        }
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -144,9 +160,20 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
+        // Set SharedPreferences
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.display_name_key), model.getDisplayName());
+        editor.putString(getString(R.string.userid_key), model.getUserid());
+        editor.apply();
+
+        // Explicit Intent to main activity
+        goToMainActivity(model.getDisplayName(), model.getUserid());
+    }
+
+    private void goToMainActivity(String display_name, String userid) {
         Intent mainIntent = new Intent(this, MainActivity.class);
-        mainIntent.putExtra(MainActivity.DISPLAYNAMEEXTRA, model.getDisplayName());
-        mainIntent.putExtra(MainActivity.USERIDEXTRA, model.getUserid());
+        mainIntent.putExtra(MainActivity.DISPLAYNAMEEXTRA, display_name);
+        mainIntent.putExtra(MainActivity.USERIDEXTRA, userid);
         startActivity(mainIntent);
     }
 

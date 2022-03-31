@@ -35,4 +35,6 @@
     <string name="verification_code">Verification Code</string>
     <string name="not_registered">Verification code sent!</string>
     <string name="wrong_verification">Wrong verification code!</string>
+    <string name="display_name_key">display_name_key</string>
+    <string name="userid_key">userid_key</string>
 </resources>
