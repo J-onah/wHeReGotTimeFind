@@ -5,23 +5,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wheregottimefind.PostReview_NotNeeded;
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.ReviewAdaptor_ToCommit;
-import com.example.wheregottimefind.ReviewImagesAdaptor;
-import com.example.wheregottimefind.pojo.Review;
-import com.example.wheregottimefind.pojo.Vendor;
 
-import java.util.ArrayList;
+import com.example.wheregottimefind.ReviewImagesAdaptor;
+
+
 
 ///////////////////////////////////////////// TO COMMIT 31-03-22
 public class PhotoFragment extends Fragment{
@@ -40,13 +36,9 @@ public class PhotoFragment extends Fragment{
         String[] ProductImages;
 
 
-        Button PhotoFragmentOutButton;
 
 
-
-
-
-        final static String TAG = "result_fragment";
+        final static String TAG = "photo_fragment";
         String vendor_name;
 
         public PhotoFragment() {
@@ -123,14 +115,7 @@ public class PhotoFragment extends Fragment{
             //https://www.youtube.com/watch?v=18VcnYN5_LM
             /////////////////////////////////////////////////////////////////////////////////////
 
-            PhotoFragmentOutButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Bundle args = new Bundle();
-                    args.putString("vendor_name", vendor_name);
-                    Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
-                }
-            });
+            
 
 
 
