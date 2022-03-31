@@ -41,7 +41,7 @@
 
     <string name="PRODUCT_NAME">PRODUCT_NAME</string>
     <string name="USERNAME">USERNAME</string>
-    <string name="UnitsPurchased">Units Purchased: sadsadasdasdasdasd</string>
+    <string name="UnitsPurchased">Units Purchased: </string>
     <string name="Unit">Unit: </string>
     <string name="Price_Per_Unit">Price per unit: </string>
 
