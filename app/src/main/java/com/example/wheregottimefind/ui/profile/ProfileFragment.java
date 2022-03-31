@@ -1,9 +1,11 @@
 package com.example.wheregottimefind.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import com.example.wheregottimefind.MainActivity;
 import com.example.wheregottimefind.data.LoginRepository;
 import com.example.wheregottimefind.data.model.LoggedInUser;
 import com.example.wheregottimefind.databinding.FragmentProfileBinding;
+import com.example.wheregottimefind.ui.login.LoginActivity;
 
 public class ProfileFragment extends Fragment {
 
@@ -39,8 +42,12 @@ public class ProfileFragment extends Fragment {
         displayNameTextView.setText(displayName);
         useridTextView.setText(userid);
 
-
-
+        // Set logout button on click listener
+        Button logoutButton = binding.profileLogout;
+        logoutButton.setOnClickListener(view -> {
+            Intent loginActivity = new Intent(getContext(), LoginActivity.class);
+            startActivity(loginActivity);
+        });
         return root;
     }
 
