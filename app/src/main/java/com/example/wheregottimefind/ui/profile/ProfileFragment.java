@@ -1,6 +1,8 @@
 package com.example.wheregottimefind.ui.profile;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wheregottimefind.MainActivity;
+import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.data.LoginRepository;
 import com.example.wheregottimefind.data.model.LoggedInUser;
 import com.example.wheregottimefind.databinding.FragmentProfileBinding;
@@ -45,6 +48,14 @@ public class ProfileFragment extends Fragment {
         // Set logout button on click listener
         Button logoutButton = binding.profileLogout;
         logoutButton.setOnClickListener(view -> {
+            // Remove Shared Preferences
+            SharedPreferences sharedPref = getActivity()
+                    .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(getString(R.string.display_name_key), "");
+            editor.putString(getString(R.string.userid_key), "");
+            editor.apply();
+
             Intent loginActivity = new Intent(getContext(), LoginActivity.class);
             startActivity(loginActivity);
         });

@@ -1,4 +1,4 @@
-package com.example.wheregottimefind.ui.search;
+package com.example.wheregottimefind;
 
 import android.os.Bundle;
 
@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
-import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.pojo.Vendor;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -45,9 +44,9 @@ public class NewReviewFragment extends Fragment {
         // TODO: Update to call API with query
         // THIS IS MOCK DATA
         vendors.clear();
-        vendors.add(new Vendor("vendor1", "90 somapah road", 91234567));
-        vendors.add(new Vendor("goodvendor", "1 jurong road", 90909090));
-        vendors.add(new Vendor("badvendor", "30 Kallang Road", 65656565));
+        vendors.add(new Vendor("vendor1", "90 somapah road", 91234567, 2));
+        vendors.add(new Vendor("goodvendor", "1 jurong road", 90909090, 3));
+        vendors.add(new Vendor("badvendor", "30 Kallang Road", 65656565, 4));
     }
     /**
      * Use this factory method to create a new instance of
@@ -105,6 +104,8 @@ public class NewReviewFragment extends Fragment {
                 vendor_phone_no_edittext.setText(String.valueOf(clicked_vendor.getPhone_no()));
                 vendor_location_edittext.setEnabled(false);
                 vendor_phone_no_edittext.setEnabled(false);
+
+                // TODO: Set details for form submission
             }
         });
 

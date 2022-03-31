@@ -2,22 +2,27 @@ package com.example.wheregottimefind;
 
 import android.app.appsearch.SearchResult;
 import android.content.Context;
+import android.content.res.Resources;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wheregottimefind.pojo.Vendor;
 
 import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder>{
-    private List<String> mData;
+    private List<Vendor> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public SearchResultAdapter(Context context, List<String> data) {
+    public SearchResultAdapter(Context context, List<Vendor> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -32,8 +37,22 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String vendor_name = mData.get(position);
-        holder.myTextView.setText(vendor_name);
+        Vendor vendor = mData.get(position);
+        String vendorName = vendor.getName();
+        String vendorLocation = vendor.getLocation();
+        int vendorPhone = vendor.getPhone_no();
+        int vendorId = vendor.getId();
+        holder.myTextView.setText(vendorName);
+
+        holder.itemView.setOnClickListener(view -> {
+            System.out.println(vendorPhone);
+            Bundle args = new Bundle();
+            args.putString("vendor_name_key", vendorName);
+            args.putString("vendor_location_key", vendorLocation);
+            args.putInt("vendor_phone_no_key", vendorPhone);
+            args.putInt("vendor_id_key", vendorId);
+            Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
+        });
     }
 
     // total number of rows
@@ -60,7 +79,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    Vendor getItem(int id) {
         return mData.get(id);
     }
 

@@ -26,9 +26,11 @@ import java.util.ArrayList;
  */
 public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.OnReviewListener{
     final static String TAG = "result_fragment";
-    String vendor_name;
-    
-    
+    String vendorName;
+    String vendorLocation;
+    int vendorPhone;
+    int vendorId;
+
     ArrayList<String> reviews_for_vendor = new ArrayList<>();
     ArrayList<String> reviews_for_vendor_TRUNCATE = new ArrayList<>();
     RecyclerView recyclerViewReviews;
@@ -40,21 +42,9 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     ArrayList<Double> Price_Per_Unit = new ArrayList<Double>();
     ArrayList<Integer> ReviewRating = new ArrayList<Integer>();
 
-    TextView VendorName, VendorLocation, VendorPhoneNo;
+    TextView vendorNameTextView, vendorLocationTextView, vendorPhoneTextView;
     TextView reviews;
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     public ResultFragment() {
         // Required empty public constructor
@@ -64,8 +54,6 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment ResultFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -85,13 +73,32 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (getArguments() != null) {
-            vendor_name = getArguments().getString("vendor_name");
-            Log.i(TAG, String.valueOf(vendor_name));
+            vendorName = getArguments().getString("vendor_name_key");
+            vendorLocation = getArguments().getString("vendor_location_key");
+            vendorPhone = getArguments().getInt("vendor_phone_no_key");
+            vendorId = getArguments().getInt("vendor_id_key");
         } else {
+            vendorName = "Vendor Name";
+            vendorLocation = "No address available";
+            vendorPhone = -1;
+            vendorId = -1;
             Log.i(TAG, "No arguments received");
         }
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_result, container, false);
+
+        vendorNameTextView = rootView.findViewById(R.id.result_vendor_name);
+        vendorLocationTextView = rootView.findViewById(R.id.VendorLocation);
+        vendorPhoneTextView = rootView.findViewById(R.id.VendorPhoneNo);
+
+        // Set vendor details
+        vendorNameTextView.setText(vendorName);
+        vendorLocationTextView.setText(vendorLocation);
+        if (vendorPhone == -1) {
+            vendorPhoneTextView.setText("Unknown");
+        } else {
+//            vendorPhoneTextView.setText(String.valueOf(vendorPhone));
+        }
 
         //TextView result_fragment_text = rootView.findViewById(R.id.result_fragment_text);
         //result_fragment_text.setText("Result fragment got vendor name: " + String.valueOf(vendor_name));
@@ -118,11 +125,6 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
 
-        VendorName = rootView.findViewById(R.id.VendorName);
-        VendorLocation = rootView.findViewById(R.id.VendorLocation);
-        VendorPhoneNo = rootView.findViewById(R.id.VendorPhoneNo);
-
-
 
 
 
@@ -133,7 +135,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
         Review testReview = new Review("User1", "nails", 5, 3, "piece", 5, new String[]{"1", "2", "3"}, new String[]{"R.drawable.chip"}, REVIEWTEST);
-        Vendor testVendor = new Vendor("POPULAR", "No location availble", 98765432);
+        Vendor testVendor = new Vendor("POPULAR", "No location availble", 98765432, 1);
 
         //ProductImages.add(R.drawable.chip);
         //users_by_reviews.add("User 1");
@@ -150,9 +152,9 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         //users_by_reviews.add("User 2");
         //users_by_reviews.add("User 3");
 
-        VendorName.setText(testVendor.getName());
-        VendorLocation.setText(testVendor.getLocation());
-        VendorPhoneNo.setText(String.valueOf(testVendor.getPhone_no()));
+//        this.vendorNameTextView.setText(testVendor.getName());
+//        vendorLocationTextView.setText(testVendor.getLocation());
+//        vendorPhoneTextView.setText(String.valueOf(testVendor.getPhone_no()));
 
 
         users_by_reviews.add(testReview.getUserid());
@@ -235,7 +237,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
             if (reviews_for_vendor.isEmpty()) throw new NullPointerException();
 
-            ReviewAdaptor_ToCommit reviewAdaptor = new ReviewAdaptor_ToCommit(getActivity(), users_by_reviews, reviews_for_vendor_TRUNCATE, ProductImages, UnitsPurchased, Unit, Price_Per_Unit, ProductName, ReviewRating, vendor_name, this);
+            ReviewAdaptor_ToCommit reviewAdaptor = new ReviewAdaptor_ToCommit(getActivity(), users_by_reviews, reviews_for_vendor_TRUNCATE, ProductImages, UnitsPurchased, Unit, Price_Per_Unit, ProductName, ReviewRating, vendorName, this);
             reviewAdaptor.setContext(getActivity());  //https://stackoverflow.com/questions/45336048/why-does-my-android-adapter-not-have-the-getactivity-method
 
             recyclerViewReviews.setAdapter(reviewAdaptor);

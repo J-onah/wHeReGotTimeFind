@@ -1,60 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.search.NewReviewFragment">
+    tools:context=".NewReviewFragment">
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/vendorHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:text="@string/vendor_details"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="6dp"
+            android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/vendor_details"
-                android:textSize="25sp" />
+        <AutoCompleteTextView
+            android:id="@+id/vendor_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/vendor_name"
+            android:layout_marginHorizontal="20dp"/>
 
-            <AutoCompleteTextView
-                android:id="@+id/vendor_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="@string/vendor_name"
-                android:layout_marginHorizontal="20dp"/>
+        <EditText
+            android:id="@+id/vendor_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:hint="@string/vendor_location"
+            android:layout_marginHorizontal="20dp"/>
 
-            <EditText
-                android:id="@+id/vendor_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPostalAddress"
-                android:hint="@string/vendor_location"
-                android:layout_marginHorizontal="20dp"/>
+        <EditText
+            android:id="@+id/vendor_phone_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number|phone"
+            android:hint="@string/vendor_phone_no"
+            android:layout_marginHorizontal="20dp"/>
 
-            <EditText
-                android:id="@+id/vendor_phone_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number|phone"
-                android:hint="@string/vendor_phone_no"
-                android:layout_marginHorizontal="20dp"/>
+        <TextView
+            android:id="@+id/reviewHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/review_details"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="6dp"
+            android:textSize="25sp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit review"
-                android:layout_gravity="center"/>
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:layout_gravity="center"
+            android:stepSize="1"/>
 
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+        <EditText
+            android:id="@+id/review_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/product_name"
+            android:layout_marginHorizontal="20dp"/>
+
+
+        <EditText
+            android:id="@+id/review_units_purchased"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="@string/units_purchased"
+            android:layout_marginHorizontal="20dp"/>
+
+        <EditText
+            android:id="@+id/review_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/review_unit"
+            android:layout_marginHorizontal="20dp"/>
+
+        <EditText
+            android:id="@+id/review_price_per_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="@string/price_per_unit"
+            android:layout_marginHorizontal="20dp"/>
+
+        <EditText
+            android:id="@+id/review_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="@string/comments"
+            android:layout_marginHorizontal="20dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_review"
+            android:layout_gravity="center"/>
+
+
+
+    </LinearLayout>
+</ScrollView>

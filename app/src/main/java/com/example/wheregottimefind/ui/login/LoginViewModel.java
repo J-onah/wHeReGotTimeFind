@@ -36,6 +36,24 @@ public class LoginViewModel extends ViewModel {
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName(), data.getUserId())));
+        } else if (result instanceof Result.NotRegistered) {
+            loginResult.setValue(new LoginResult(R.string.not_registered));
+        } else {
+            loginResult.setValue(new LoginResult(R.string.login_failed));
+        }
+    }
+
+    public void login(String username, String password, String verificationCode) {
+        // can be launched in a separate asynchronous job
+        Result<LoggedInUser> result = loginRepository.register(username, password, verificationCode);
+
+        if (result instanceof Result.Success) {
+            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
+            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName(), data.getUserId())));
+        } else if (result instanceof Result.NotRegistered) {
+            loginResult.setValue(new LoginResult(R.string.not_registered));
+        } else if (result instanceof Result.WrongVerification) {
+            loginResult.setValue(new LoginResult(R.string.wrong_verification));
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }

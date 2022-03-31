@@ -45,4 +45,25 @@ public class Result<T> {
             return this.error;
         }
     }
+
+    // Not Registered sub-class
+    public final static class NotRegistered extends Result {
+        private Exception error;
+
+        public NotRegistered(Exception error) { this.error = error; }
+
+        public Exception getError() {
+            return this.error;
+        }
+    }
+
+    public final static class WrongVerification extends Result {
+        private Exception error;
+
+        public WrongVerification(Exception error) { this.error = error; }
+
+        public Exception getError() {
+            return this.error;
+        }
+    }
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,16 +46,6 @@ public class SearchFragment extends Fragment {
             recyclerView = binding.searchResults;
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             adapter = new SearchResultAdapter(getContext(), full_review_data.getVendorsFromData());
-            adapter.setClickListener(new SearchResultAdapter.ItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    // Pass data to result fragment
-                    String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
-                    Bundle args = new Bundle();
-                    args.putString("vendor_name", vendor_name);
-                    Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
-                }
-            });
             recyclerView.setAdapter(adapter);
             System.out.println("Current full_review_data: " + full_review_data.getAllReviews().toString());
         }
@@ -65,42 +56,15 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 Log.i(TAG, "Search query changed to: " + s);
+                showProgressBar();
+                updateRecyclerView(s);
                 return true;
             }
 
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Log.i(TAG, "Search submitted with query: " + s);
-                // Mock save data
-                full_review_data.clearAll();
-                BackendApi.getReviewsByName(fullReviews -> {
-                    Log.d(TAG, "Received data!");
-                    String fullString = "";
-                    for (FullReview fullreview: fullReviews) {
-                        Log.d(TAG, fullreview.toString());
-                        fullString += fullreview + "\n";
-
-                        // Add to FullReviewData
-                        full_review_data.addFullReview(fullreview);
-                        System.out.println(full_review_data.getAllReviews().toString());
-                    }
-
-                    // Update recycler view
-                    recyclerView = getActivity().findViewById(R.id.search_results);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    adapter = new SearchResultAdapter(getContext(), full_review_data.getVendorsFromData());
-                    adapter.setClickListener(new SearchResultAdapter.ItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            // Pass data to result fragment
-                            String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
-                            Bundle args = new Bundle();
-                            args.putString("vendor_name", vendor_name);
-                            Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
-                        }
-                    });
-                    recyclerView.setAdapter(adapter);
-                });
+                updateRecyclerView(s);
                 return true;
             }
         });
@@ -112,5 +76,64 @@ public class SearchFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void updateRecyclerView(String s) {
+        recyclerView = getActivity().findViewById(R.id.search_results);
+
+        // Skip searching if string is empty
+        if (s.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            hideProgressBar();
+            return;
+        }
+
+        // Clear data to prevent old data being shown
+        recyclerView.setAdapter(null);
+        recyclerView.setVisibility(View.VISIBLE);
+        full_review_data.clearAll();
+
+        BackendApi.getReviewsByName(s, fullReviews -> {
+            Log.d(TAG, "Received data!");
+            String fullString = "";
+            for (FullReview fullreview: fullReviews) {
+                Log.d(TAG, fullreview.toString());
+                fullString += fullreview + "\n";
+
+                // Add to FullReviewData
+                full_review_data.addFullReview(fullreview);
+                System.out.println(full_review_data.getAllReviews().toString());
+            }
+
+            // Update recycler view
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter = new SearchResultAdapter(getContext(), full_review_data.getVendorsFromData());
+            adapter.setClickListener(new SearchResultAdapter.ItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    // Pass data to result fragment
+                    String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
+                    Bundle args = new Bundle();
+                    args.putString("vendor_name", vendor_name);
+                    Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
+                }
+            });
+            recyclerView.setAdapter(adapter);
+            hideProgressBar();
+        });
+    }
+
+    private void showProgressBar() {
+        ProgressBar progressBar = getActivity().findViewById(R.id.progress_bar);
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideProgressBar() {
+        ProgressBar progressBar = getActivity().findViewById(R.id.progress_bar);
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }

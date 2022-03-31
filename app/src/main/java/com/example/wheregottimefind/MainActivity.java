@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+
         // FAB to add new review
         addReviewFab = findViewById(R.id.fab);
         addReviewFab.setOnClickListener(new View.OnClickListener() {

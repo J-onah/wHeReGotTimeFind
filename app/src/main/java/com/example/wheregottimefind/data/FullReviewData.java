@@ -1,6 +1,8 @@
 package com.example.wheregottimefind.data;
 
 import com.example.wheregottimefind.pojo.FullReview;
+import com.example.wheregottimefind.pojo.Review;
+import com.example.wheregottimefind.pojo.Vendor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,12 +38,16 @@ public class FullReviewData {
         full_reviews = new ArrayList<>();
     }
 
-    public List<String> getVendorsFromData() {
-        Set<String> vendors = new HashSet<>();
+    public List<Vendor> getVendorsFromData() {
+        Set<Vendor> vendors = new HashSet<>();
         for (FullReview full_review: full_reviews) {
-            vendors.add(full_review.getVendor().getName());
+            vendors.add(full_review.getVendor());
         }
-        List<String> res = new ArrayList<>(vendors);
+        List<Vendor> res = new ArrayList<>(vendors);
         return res;
     }
+
+//    public List<Review> getReviewsByVendor() {
+//        System.out.println("hi");
+//    }
 }

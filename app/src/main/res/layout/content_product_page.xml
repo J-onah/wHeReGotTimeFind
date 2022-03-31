@@ -36,11 +36,11 @@
 
 
                 <TextView
-                    android:id="@+id/VendorName"
+                    android:id="@+id/result_vendor_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="50dp"
+                    android:textSize="50sp"
                     android:text="@string/VendorName"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
@@ -62,7 +62,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorPhoneNo"
-                    app:layout_constraintTop_toBottomOf="@id/VendorName"
+                    app:layout_constraintTop_toBottomOf="@id/result_vendor_name"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
 
