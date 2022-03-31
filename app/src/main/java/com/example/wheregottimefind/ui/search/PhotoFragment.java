@@ -84,13 +84,6 @@ public class PhotoFragment extends Fragment{
 
 
 
-
-
-        
-
-
-            PhotoFragmentOutButton = rootView.findViewById(R.id.PhotoFragmentOutButton);
-
             recyclerViewPhotos = (RecyclerView) rootView.findViewById(R.id.recyclerViewPhotos);
             try {
 
