@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.ResultFragment">
 
-
-    
-    <!-- TO COMMIT 31-03-22 -->
     <include layout="@layout/content_product_page" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
