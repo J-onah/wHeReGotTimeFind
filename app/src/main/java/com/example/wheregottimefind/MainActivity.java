@@ -18,6 +18,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     private static String TAG = "main_activity";
     private ActivityMainBinding binding;
+    public static final String DISPLAYNAMEEXTRA = "display_name_extra";
+    public static final String USERIDEXTRA = "user_id_extra";
     NavController navController;
     FloatingActionButton addReviewFab;
 

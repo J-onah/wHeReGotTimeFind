@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.wheregottimefind.MainActivity;
+import com.example.wheregottimefind.data.LoginRepository;
+import com.example.wheregottimefind.data.model.LoggedInUser;
 import com.example.wheregottimefind.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -18,14 +21,26 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+//        ProfileViewModel profileViewModel =
+//                new ViewModelProvider(this).get(ProfileViewModel.class);
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textProfile;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        // Get data from intent
+        String displayName = getActivity().getIntent().getExtras().getString(MainActivity.DISPLAYNAMEEXTRA);
+        String userid = getActivity().getIntent().getExtras().getString(MainActivity.USERIDEXTRA);
+
+        // Set TextViews
+        final TextView displayNameTextView = binding.profileDisplayname;
+        final TextView useridTextView = binding.profileUserid;
+        displayNameTextView.setText(displayName);
+        useridTextView.setText(userid);
+
+
+
         return root;
     }
 
