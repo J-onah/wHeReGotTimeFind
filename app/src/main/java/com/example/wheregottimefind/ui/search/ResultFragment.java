@@ -14,10 +14,13 @@ import android.widget.TextView;
 
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.ReviewAdaptor_ToCommit;
+import com.example.wheregottimefind.data.FullReviewData;
+import com.example.wheregottimefind.pojo.FullReview;
 import com.example.wheregottimefind.pojo.Review;
 import com.example.wheregottimefind.pojo.Vendor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,7 +51,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     
     
     FullReviewData Full_Review_Data = FullReviewData.getInstance();
-    List<FullReview> ListOfFullReviewObj; 
+    List<FullReview> ListOfFullReviewObj;
     
     
 

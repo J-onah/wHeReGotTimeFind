@@ -118,7 +118,7 @@ public class SearchFragment extends Fragment {
                     
                     
                     
-                    args.putInt("vendor_id_key", vendorId);         /// how is the ID extracted?
+//                    args.putInt("vendor_id_key", vendorId);         /// how is the ID extracted?
                     
                     
                     
