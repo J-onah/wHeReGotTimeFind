@@ -6,11 +6,16 @@ package com.example.wheregottimefind.ui.login;
 class LoggedInUserView {
     private String displayName;
     private String email;
-    //... other data fields that may be accessible to the UI
+    private String tempAuthToken;
 
-    LoggedInUserView(String displayName, String email) {
+    String getTempAuthToken() {
+        return tempAuthToken;
+    }
+
+    LoggedInUserView(String displayName, String email, String tempAuthToken) {
         this.displayName = displayName;
         this.email = email;
+        this.tempAuthToken = tempAuthToken;
     }
 
     String getDisplayName() {

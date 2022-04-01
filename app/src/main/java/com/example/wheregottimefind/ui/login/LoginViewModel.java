@@ -10,6 +10,7 @@ import com.example.wheregottimefind.data.LoginRepository;
 import com.example.wheregottimefind.data.Result;
 import com.example.wheregottimefind.data.model.LoggedInUser;
 import com.example.wheregottimefind.R;
+import com.example.wheregottimefind.data.pojo.User;
 
 public class LoginViewModel extends ViewModel {
 
@@ -30,33 +31,52 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void login(String username, String password) {
-        // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
-
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName(), data.getEmail())));
-        } else if (result instanceof Result.NotRegistered) {
-            loginResult.setValue(new LoginResult(R.string.not_registered));
-        } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
-        }
+        loginRepository.login(username, password, new OnLoginListener(){
+            @Override
+            public void onLoginResult(Result result) {
+                System.out.println("onLoginResult!! " + result);
+                if (result instanceof Result.Success) {
+                    User data = ((Result.Success<User>) result).getData();
+                    loginResult.setValue(new LoginResult(
+                            new LoggedInUserView(
+                                    String.valueOf(data.getDisplay_name()), data.getName(), data.getTemp_auth_token()
+                            )
+                    ));
+                } else if (result instanceof Result.NotRegistered) {
+                    loginResult.setValue(new LoginResult(R.string.not_registered));
+                } else {
+                    loginResult.setValue(new LoginResult(R.string.login_failed));
+                }
+            }
+        });
     }
 
     public void login(String username, String password, String verificationCode) {
-        // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.register(username, password, verificationCode);
-
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName(), data.getEmail())));
-        } else if (result instanceof Result.NotRegistered) {
-            loginResult.setValue(new LoginResult(R.string.not_registered));
-        } else if (result instanceof Result.WrongVerification) {
-            loginResult.setValue(new LoginResult(R.string.wrong_verification));
+        if (verificationCode.equals("123456")) {
+            loginRepository.register(username, password, new OnLoginListener(){
+                @Override
+                public void onLoginResult(Result result) {
+                    if (result instanceof Result.Success) {
+                        login(username, password);
+                    }
+                }
+            });
         } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
+            loginResult.setValue(new LoginResult(R.string.wrong_verification));
         }
+//        // can be launched in a separate asynchronous job
+//        Result<LoggedInUser> result = loginRepository.register(username, password, verificationCode);
+//
+//        if (result instanceof Result.Success) {
+//            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
+//            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName(), data.getEmail())));
+//        } else if (result instanceof Result.NotRegistered) {
+//            loginResult.setValue(new LoginResult(R.string.not_registered));
+//        } else if (result instanceof Result.WrongVerification) {
+//            loginResult.setValue(new LoginResult(R.string.wrong_verification));
+//        } else {
+//            loginResult.setValue(new LoginResult(R.string.login_failed));
+//        }
     }
 
     public void loginDataChanged(String username, String password) {

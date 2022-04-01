@@ -36,9 +36,9 @@ public class NewReviewFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static void updateVendors(String vendorName, ArrayAdapter<Vendor> adapter,
+    private void updateVendors(String vendorName, ArrayAdapter<Vendor> adapter,
                                       AutoCompleteTextView vendorNameTextView) {
-        BackendApi.getVendorsByVendorName(vendorName, new AsyncUpdate<Vendor>() {
+        BackendApi.getVendorsByVendorName(getActivity(), vendorName, new AsyncUpdate<Vendor[]>() {
             @Override
             public void updateOnDataReceived(Vendor[] vendorsData) {
                 if (vendorsData != null) {

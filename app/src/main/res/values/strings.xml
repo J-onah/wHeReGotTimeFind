@@ -56,4 +56,5 @@
     <string name="vendor_location_key">vendor_location_key</string>
     <string name="vendor_id_key">vendor_id_key</string>
     <string name="vendor_phone_no_key">vendor_phone_no_key</string>
+    <string name="temp_auth_key">temp_auth_key</string>
 </resources>

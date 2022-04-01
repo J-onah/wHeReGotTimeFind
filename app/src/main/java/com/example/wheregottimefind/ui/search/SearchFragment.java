@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -90,7 +91,7 @@ public class SearchFragment extends Fragment {
         recyclerView.setVisibility(View.VISIBLE);
         full_review_data.clearAll();
 
-        BackendApi.getReviewsByName(s, fullReviews -> {
+        BackendApi.getReviewsByName(getActivity(), s, fullReviews -> {
             if (fullReviews == null) {
                 hideProgressBar();
                 Toast.makeText(getActivity(), "Unable to connect to server!", Toast.LENGTH_SHORT).show();

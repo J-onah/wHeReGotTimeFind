@@ -164,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.display_name_key), model.getDisplayName());
         editor.putString(getString(R.string.userid_key), model.getEmail());
+        editor.putString(getString(R.string.temp_auth_key), model.getTempAuthToken());
         editor.apply();
 
         // Explicit Intent to main activity
@@ -182,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showVerificationCode() {
-        System.out.println("verification code");
+        Log.i(TAG, "Show verification code");
         EditText verification_code = findViewById(R.id.verification_code);
         verification_code.setVisibility(TextView.VISIBLE);
     }

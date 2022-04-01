@@ -2,8 +2,11 @@ package com.example.wheregottimefind.data;
 
 import android.util.Log;
 
+import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
 import com.example.wheregottimefind.data.model.LoggedInUser;
+import com.example.wheregottimefind.data.pojo.User;
+import com.example.wheregottimefind.ui.login.OnLoginListener;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,85 +20,71 @@ import java.security.SecureRandom;
 public class LoginDataSource {
     private static final String TAG = "login_data_source";
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public void login(String username, String password, OnLoginListener loginListener) {
         String displayName;
         String hashedPasswordString;
 
-        // Hash password (https://www.baeldung.com/java-password-hashing)
         try {
-            SecureRandom random = new SecureRandom();
-            byte[] salt = new byte[16];
-            random.nextBytes(salt);
-
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            md.update(salt);
-
-            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
-            hashedPasswordString = new String(hashedPassword, StandardCharsets.UTF_8);
-            System.out.println("password:hashed " + password + ":" + hashedPasswordString);
+            hashedPasswordString = hashPassword(password);
         } catch (NoSuchAlgorithmException e) {
             Log.e(TAG, "Could not hash password!" + e);
+            return;
         }
 
-        // Registration logic
-//        if (username.equals("new_user@sutd.edu.sg")) {
-//            return new Result.NotRegistered(new IllegalAccessException("User not registered!"));
-//        }
-
         try {
-            // TODO: handle loggedInUser authentication
             // Get front part of email
             int atIndex = username.indexOf('@');
             if (atIndex == -1) {
                 throw new IllegalAccessException("No @ in username");
             } else if (username.endsWith("sutd.edu.sg")) {
-                displayName = capitaliseName(username.substring(0, atIndex));
 
                 // Call login api
-                BackendApi.get
-                LoggedInUser fakeUser =
-                        new LoggedInUser(
-                                username,
-                                displayName);
-
-                return new Result.Success<>(fakeUser);
-            } else {
-                throw new IllegalAccessException("Does not end with sutd.edu.sg");
+                BackendApi.login(username, hashedPasswordString, user -> {
+                    System.out.println("-----login user: " + user);
+                    if (user == null) {
+                        loginListener.onLoginResult(new Result.Error(new IOException("Null result")));
+                    } else if (user.getLogin_error() == null || user.getLogin_error().isEmpty()) {
+                        loginListener.onLoginResult(new Result.Success<>(user));
+                    } else if (user.getLogin_error().equals("user not found")) {
+                        loginListener.onLoginResult(new Result.NotRegistered(new IOException("User not registered!")));
+                    } else {
+                        loginListener.onLoginResult(new Result.Error(new IOException(user.getLogin_error())));
+                    }
+                });
             }
-
         } catch (Exception e) {
-            return new Result.Error(new IOException("Error logging in", e));
+            Log.e(TAG, e.toString());
+            loginListener.onLoginResult(new Result.Error(e));
         }
     }
 
-    public Result<LoggedInUser> register(String username, String password, String verificationCode) {
+    public void register(String username, String password, OnLoginListener loginListener) {
         String displayName;
+        String hashedPasswordString;
 
-        if ("123456".equals(verificationCode)) {
-            System.out.println("register call login");
-            try {
-                // TODO: handle loggedInUser authentication
-                // Get front part of email
-                int atIndex = username.indexOf('@');
-                if (atIndex == -1) {
-                    throw new IllegalAccessException("No @ in username");
-                } else if (username.endsWith("sutd.edu.sg")) {
-                    displayName = capitaliseName(username.substring(0, atIndex));
+
+        try {
+            hashedPasswordString = hashPassword(password);
+        } catch (NoSuchAlgorithmException e) {
+            Log.e(TAG, "Could not hash password!" + e);
+            return;
+        }
+
+        try {
+            // Call register api
+            BackendApi.register(username, hashedPasswordString, user -> {
+                System.out.println("-----register user: " + user);
+                if (user == null) {
+                    loginListener.onLoginResult(new Result.Error(new IOException("Null result")));
+                } else if (user.getId() != 0) {
+                    loginListener.onLoginResult(new Result.Success<>(user));
                 } else {
-                    throw new IllegalAccessException("Does not end with sutd.edu.sg");
+                    loginListener.onLoginResult(new Result.Error(new IOException(user.getLogin_error())));
                 }
-
-                LoggedInUser fakeUser =
-                        new LoggedInUser(
-                                java.util.UUID.randomUUID().toString(),
-                                displayName);
-
-                return new Result.Success<>(fakeUser);
-            } catch (Exception e) {
-                return new Result.Error(new IOException("Error logging in", e));
-            }
-        } else {
-            return new Result.WrongVerification(new IOException("Error logging in"));
+            });
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+            loginListener.onLoginResult(new Result.Error(e));
         }
     }
 
@@ -103,15 +92,13 @@ public class LoginDataSource {
         // TODO: revoke authentication
     }
 
-    private static String capitaliseName(String emailFront){
-        String words[] = emailFront.split("_");
-        String res = "";
+    // Hash password (https://www.baeldung.com/java-password-hashing)
+    private String hashPassword(String password) throws NoSuchAlgorithmException{
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(password.getBytes(StandardCharsets.UTF_8));
 
-        for (String w: words){
-            String first = w.substring(0,1);
-            String others = w.substring(1);
-            res += first.toUpperCase() + others + " ";
-        }
-        return res.trim();
+//        byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.US_ASCII));
+        String hashedPasswordString = new String(md.digest());
+        return hashedPasswordString;
     }
 }
