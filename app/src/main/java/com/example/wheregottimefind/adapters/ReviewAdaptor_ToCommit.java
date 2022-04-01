@@ -1,4 +1,4 @@
-package com.example.wheregottimefind;
+package com.example.wheregottimefind.adapters;
 
 
 
@@ -17,8 +17,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wheregottimefind.R;
 
 import java.util.ArrayList;
 

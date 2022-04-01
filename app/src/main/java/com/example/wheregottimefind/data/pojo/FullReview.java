@@ -1,6 +1,6 @@
-package com.example.wheregottimefind.pojo;
+package com.example.wheregottimefind.data.pojo;
 
-public class FullReview {
+public class FullReview implements Comparable<FullReview>{
     private Vendor vendor;
     private Review review;
 
@@ -31,5 +31,16 @@ public class FullReview {
                 "vendor=" + vendor +
                 ", review=" + review +
                 '}';
+    }
+
+    @Override
+    //by default will be rating for now
+    public int compareTo(FullReview compare) {
+        int cmp = compare.getReview().getRating()-this.getReview().getRating();
+        //if equal rating sort by number of purchases instead
+        if (cmp == 0) {
+            return compare.getReview().getUnits_purchased() - this.getReview().getUnits_purchased();
+        }
+        return cmp;
     }
 }

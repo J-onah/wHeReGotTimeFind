@@ -5,17 +5,22 @@ package com.example.wheregottimefind.ui.login;
  */
 class LoggedInUserView {
     private String displayName;
-    private String userid;
-    //... other data fields that may be accessible to the UI
+    private String email;
+    private String tempAuthToken;
 
-    LoggedInUserView(String displayName, String userid) {
+    String getTempAuthToken() {
+        return tempAuthToken;
+    }
+
+    LoggedInUserView(String displayName, String email, String tempAuthToken) {
         this.displayName = displayName;
-        this.userid = userid;
+        this.email = email;
+        this.tempAuthToken = tempAuthToken;
     }
 
     String getDisplayName() {
         return displayName;
     }
 
-    String getUserid() { return userid; }
+    String getEmail() { return email; }
 }

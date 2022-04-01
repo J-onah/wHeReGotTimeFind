@@ -1,6 +1,8 @@
 package com.example.wheregottimefind.data;
 
 import com.example.wheregottimefind.data.model.LoggedInUser;
+import com.example.wheregottimefind.data.pojo.User;
+import com.example.wheregottimefind.ui.login.OnLoginListener;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -14,7 +16,7 @@ public class LoginRepository {
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
-    private LoggedInUser user = null;
+    private User user = null;
 
     // private constructor : singleton access
     private LoginRepository(LoginDataSource dataSource) {
@@ -37,27 +39,23 @@ public class LoginRepository {
         dataSource.logout();
     }
 
-    private void setLoggedInUser(LoggedInUser user) {
+    private void setLoggedInUser(User user) {
         this.user = user;
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public void login(String username, String password, OnLoginListener loginListener) {
+//    public Result<LoggedInUser> login(String username, String password, OnLoginListener loginListener) {
         // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
-        if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
-        }
-        return result;
+        dataSource.login(username, password, loginListener);
+//        if (result instanceof Result.Success) {
+//            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
+//        }
+//        return result;
     }
 
-    public Result<LoggedInUser> register(String username, String password, String verificationCode) {
-        // handle login
-        Result<LoggedInUser> result = dataSource.register(username, password, verificationCode);
-        if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
-        }
-        return result;
+    public void register(String username, String password, OnLoginListener loginListener) {
+        dataSource.register(username, password, loginListener);
     }
 }
