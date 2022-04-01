@@ -1,12 +1,9 @@
 package com.example.wheregottimefind.data;
 
-import com.example.wheregottimefind.pojo.FullReview;
-import com.example.wheregottimefind.pojo.Review;
-import com.example.wheregottimefind.pojo.Vendor;
+import com.example.wheregottimefind.data.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

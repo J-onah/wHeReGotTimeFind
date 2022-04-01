@@ -15,7 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
-import com.example.wheregottimefind.pojo.Vendor;
+import com.example.wheregottimefind.backendAPI.AsyncUpdate;
+import com.example.wheregottimefind.backendAPI.BackendApi;
+import com.example.wheregottimefind.data.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.Vendor;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -37,16 +40,30 @@ public class NewReviewFragment extends Fragment {
     public NewReviewFragment() {
         // Required empty public constructor
         // For testing only
-        this.updateVendors();
+//        this.updateVendors();
     }
 
-    private static void updateVendors() {
+    private static void updateVendors(String vendorName, ArrayAdapter<Vendor> adapter,
+                                      AutoCompleteTextView vendorNameTextView) {
         // TODO: Update to call API with query
+        BackendApi.getVendorsByVendorName(vendorName, new AsyncUpdate<Vendor>() {
+            @Override
+            public void updateOnDataReceived(Vendor[] vendorsData) {
+                if (vendorsData != null) {
+                    adapter.clear();
+                    for (Vendor vendor: vendorsData) {
+                        adapter.add(vendor);
+                    }
+                vendorNameTextView.refreshAutoCompleteResults();
+                }
+            }
+        });
+
         // THIS IS MOCK DATA
-        vendors.clear();
-        vendors.add(new Vendor("vendor1", "90 somapah road", 91234567, 2));
-        vendors.add(new Vendor("goodvendor", "1 jurong road", 90909090, 3));
-        vendors.add(new Vendor("badvendor", "30 Kallang Road", 65656565, 4));
+//        vendors.clear();
+//        vendors.add(new Vendor("vendor1", "90 somapah road", 91234567, 2));
+//        vendors.add(new Vendor("goodvendor", "1 jurong road", 90909090, 3));
+//        vendors.add(new Vendor("badvendor", "30 Kallang Road", 65656565, 4));
     }
     /**
      * Use this factory method to create a new instance of
@@ -87,13 +104,29 @@ public class NewReviewFragment extends Fragment {
         fab.hide();
 
         // Autocomplete field
-        AutoCompleteTextView vendor_name = rootView.findViewById(R.id.vendor_name);
+        AutoCompleteTextView vendorNameTextView = rootView.findViewById(R.id.vendor_name);
         ArrayAdapter<Vendor> adapter = new ArrayAdapter<Vendor>(container.getContext(),
                 android.R.layout.simple_list_item_1, vendors);
-        vendor_name.setAdapter(adapter);
+        vendorNameTextView.setAdapter(adapter);
+
+        vendorNameTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                updateVendors(charSequence.toString(), adapter, vendorNameTextView);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         // Autofill item on click listener
-        vendor_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        vendorNameTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Vendor clicked_vendor = ((Vendor) adapterView.getItemAtPosition(i));
@@ -110,7 +143,7 @@ public class NewReviewFragment extends Fragment {
         });
 
         //
-        vendor_name.addTextChangedListener(new TextWatcher() {
+        vendorNameTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 return;

@@ -1,8 +1,6 @@
-package com.example.wheregottimefind;
+package com.example.wheregottimefind.adapters;
 
-import android.app.appsearch.SearchResult;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,8 @@ import android.widget.TextView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wheregottimefind.pojo.Vendor;
+import com.example.wheregottimefind.R;
+import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.List;
 

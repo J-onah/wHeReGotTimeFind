@@ -1,4 +1,4 @@
-package com.example.wheregottimefind.pojo;
+package com.example.wheregottimefind.data.pojo;
 
 public class FullReview {
     private Vendor vendor;

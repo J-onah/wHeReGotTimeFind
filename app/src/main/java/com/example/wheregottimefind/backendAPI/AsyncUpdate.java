@@ -1,7 +1,8 @@
 package com.example.wheregottimefind.backendAPI;
 
-import com.example.wheregottimefind.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.Vendor;
 
-public interface AsyncUpdate {
-    void updateOnDataReceived(FullReview[] fullReviews);
+public interface AsyncUpdate<T> {
+        void updateOnDataReceived(T[] array);
 }
