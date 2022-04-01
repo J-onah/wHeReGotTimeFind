@@ -268,7 +268,11 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
             ProductImages.add(eachFullReview.getReview().getImages());
 
             reviews_for_vendor.add(eachFullReview.getReview().getComments());
-            reviews_for_vendor_TRUNCATE.add(eachFullReview.getReview().getComments().substring(0, 50) + " ...");
+            if (eachFullReview.getReview().getComments().length() > 50) {
+                reviews_for_vendor_TRUNCATE.add(eachFullReview.getReview().getComments().substring(0, 50) + " ...");
+            } else {
+                reviews_for_vendor_TRUNCATE.add(eachFullReview.getReview().getComments());
+            }
 
         }
         
