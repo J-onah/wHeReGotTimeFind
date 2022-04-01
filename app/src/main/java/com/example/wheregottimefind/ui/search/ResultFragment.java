@@ -222,15 +222,15 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         
         //vendorId = 1;
 
-        Full_Review_Data.clearAll(); ///////////////////// WARNING: FOR TEST PURPOSES. REMOVE AFTER TEST. Due to bottom 4 code lines, which causes repeats when returning to page.
+//        Full_Review_Data.clearAll(); ///////////////////// WARNING: FOR TEST PURPOSES. REMOVE AFTER TEST. Due to bottom 4 code lines, which causes repeats when returning to page.
 
         /// TESTING FullReview objects and using them to setup a test version of FullReviewData instance
-        FullReview testFullReviewObj1 = new FullReview(testVendor, testReview);
-        FullReview testFullReviewObj2 = new FullReview(testVendor, testReview2);
+//        FullReview testFullReviewObj1 = new FullReview(testVendor, testReview);
+//        FullReview testFullReviewObj2 = new FullReview(testVendor, testReview2);
 
 
-        Full_Review_Data.addFullReview(testFullReviewObj1);
-        Full_Review_Data.addFullReview(testFullReviewObj2);
+//        Full_Review_Data.addFullReview(testFullReviewObj1);
+//        Full_Review_Data.addFullReview(testFullReviewObj2);
         //////////////////
 
 
@@ -243,7 +243,8 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
         ListOfFullReviewObj = Full_Review_Data.getReviewsByVendorId(vendorId);
-
+        System.out.println(vendorId);
+        System.out.println(ListOfFullReviewObj);
         this.vendorNameTextView.setText(ListOfFullReviewObj.get(0).getVendor().getName());
         vendorLocationTextView.setText(ListOfFullReviewObj.get(0).getVendor().getLocation());
         vendorPhoneTextView.setText(String.valueOf(ListOfFullReviewObj.get(0).getVendor().getPhone_no()));

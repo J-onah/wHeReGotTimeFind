@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_ToCommit.ReviewViewHolder> {
 
+    private final static String TAG = "review_adapter";
     ArrayList<String> users, reviews, iUnit, Product_Name;
     ArrayList<Integer> iUnitsPurchased, Rating;
     ArrayList<Double> iPrice_Per_Unit;
@@ -127,6 +128,8 @@ public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_T
         }
         catch(IndexOutOfBoundsException ex){
             holder.ProductImage.setImageResource(R.drawable.blank_extreme_small);
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to handle images" + e);
         }
 
         try{
