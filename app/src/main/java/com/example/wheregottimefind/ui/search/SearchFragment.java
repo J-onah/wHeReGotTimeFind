@@ -96,6 +96,11 @@ public class SearchFragment extends Fragment {
         full_review_data.clearAll();
 
         BackendApi.getReviewsByName(s, fullReviews -> {
+            if (fullReviews == null) {
+                hideProgressBar();
+                Toast.makeText(getActivity(), "Unable to connect to server!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Log.d(TAG, "Received data!");
             String fullString = "";
             Arrays.sort(fullReviews);
