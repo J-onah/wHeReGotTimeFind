@@ -1,6 +1,6 @@
 package com.example.wheregottimefind.backendAPI;
 
-import com.example.wheregottimefind.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.FullReview;
 
 public class FullReviewResponse {
     private FullReview[] full_reviews;

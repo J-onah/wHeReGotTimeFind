@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.ReviewAdaptor_ToCommit;
-import com.example.wheregottimefind.pojo.Review;
-import com.example.wheregottimefind.pojo.Vendor;
+import com.example.wheregottimefind.adapters.ReviewAdaptor_ToCommit;
+import com.example.wheregottimefind.data.pojo.Review;
+import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.ArrayList;
 

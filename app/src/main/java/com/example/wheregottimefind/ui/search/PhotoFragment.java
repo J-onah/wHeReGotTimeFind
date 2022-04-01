@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
 
-import com.example.wheregottimefind.ReviewImagesAdaptor;
+import com.example.wheregottimefind.adapters.ReviewImagesAdaptor;
 
 
 public class PhotoFragment extends Fragment{
