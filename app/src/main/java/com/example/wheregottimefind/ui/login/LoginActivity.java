@@ -163,11 +163,11 @@ public class LoginActivity extends AppCompatActivity {
         // Set SharedPreferences
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.display_name_key), model.getDisplayName());
-        editor.putString(getString(R.string.userid_key), model.getUserid());
+        editor.putString(getString(R.string.userid_key), model.getEmail());
         editor.apply();
 
         // Explicit Intent to main activity
-        goToMainActivity(model.getDisplayName(), model.getUserid());
+        goToMainActivity(model.getDisplayName(), model.getEmail());
     }
 
     private void goToMainActivity(String display_name, String userid) {
