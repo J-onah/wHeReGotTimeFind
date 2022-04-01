@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NewReviewFragment">
+    tools:context=".ui.NewReviewFragment">
 
 
     <LinearLayout
@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
+            android:completionThreshold="1"
             android:hint="@string/vendor_name"
             android:layout_marginHorizontal="20dp"/>
 
@@ -65,13 +66,14 @@
             android:layout_gravity="center"
             android:stepSize="1"/>
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/review_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
             android:hint="@string/product_name"
+            android:completionThreshold="1"
             android:layout_marginHorizontal="20dp"/>
 
 

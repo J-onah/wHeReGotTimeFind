@@ -1,13 +1,10 @@
 package com.example.wheregottimefind.ui.search;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -15,16 +12,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.SearchResultAdapter;
+import com.example.wheregottimefind.adapters.SearchResultAdapter;
 import com.example.wheregottimefind.backendAPI.BackendApi;
 import com.example.wheregottimefind.data.FullReviewData;
-import com.example.wheregottimefind.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.databinding.FragmentSearchBinding;
 
 import java.util.Arrays;
@@ -95,7 +91,7 @@ public class SearchFragment extends Fragment {
         recyclerView.setVisibility(View.VISIBLE);
         full_review_data.clearAll();
 
-        BackendApi.getReviewsByName(s, fullReviews -> {
+        BackendApi.getReviewsByName(getActivity(), s, fullReviews -> {
             if (fullReviews == null) {
                 hideProgressBar();
                 Toast.makeText(getActivity(), "Unable to connect to server!", Toast.LENGTH_SHORT).show();
@@ -125,6 +121,13 @@ public class SearchFragment extends Fragment {
                     String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
                     Bundle args = new Bundle();
                     args.putString("vendor_name", vendor_name);
+                    
+                    
+                    
+//                    args.putInt("vendor_id_key", vendorId);         /// how is the ID extracted?
+                    
+                    
+                    
                     Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
                 }
             });
