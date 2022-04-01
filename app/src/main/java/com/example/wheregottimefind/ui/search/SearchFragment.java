@@ -121,6 +121,13 @@ public class SearchFragment extends Fragment {
                     String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
                     Bundle args = new Bundle();
                     args.putString("vendor_name", vendor_name);
+                    
+                    
+                    
+//                    args.putInt("vendor_id_key", vendorId);         /// how is the ID extracted?
+                    
+                    
+                    
                     Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
                 }
             });

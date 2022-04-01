@@ -13,11 +13,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wheregottimefind.R;
+
 import com.example.wheregottimefind.adapters.ReviewAdaptor_ToCommit;
+import com.example.wheregottimefind.data.FullReviewData;
+import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +48,13 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
     TextView vendorNameTextView, vendorLocationTextView, vendorPhoneTextView;
     TextView reviews;
+    
+    
+    
+    FullReviewData Full_Review_Data = FullReviewData.getInstance();
+    List<FullReview> ListOfFullReviewObj;
+    
+    
 
     
     public ResultFragment() {
@@ -151,10 +162,21 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         //reviews_for_vendor.add("Review: This is a nice shop that ........");
         //users_by_reviews.add("User 2");
         //users_by_reviews.add("User 3");
-
-//        this.vendorNameTextView.setText(testVendor.getName());
-//        vendorLocationTextView.setText(testVendor.getLocation());
-//        vendorPhoneTextView.setText(String.valueOf(testVendor.getPhone_no()));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* 
+        /////////////////// HARDCODED TEST SECTION
+        this.vendorNameTextView.setText(testVendor.getName());
+        vendorLocationTextView.setText(testVendor.getLocation());
+        vendorPhoneTextView.setText(String.valueOf(testVendor.getPhone_no()));
 
 
         users_by_reviews.add(testReview.getUserid());
@@ -187,43 +209,77 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
         ////////////////////////
+        */
+
+
+
+
+        
+        
+        
+        
+        
+        
+        //vendorId = 1;
+
+//        Full_Review_Data.clearAll(); ///////////////////// WARNING: FOR TEST PURPOSES. REMOVE AFTER TEST. Due to bottom 4 code lines, which causes repeats when returning to page.
+
+        /// TESTING FullReview objects and using them to setup a test version of FullReviewData instance
+//        FullReview testFullReviewObj1 = new FullReview(testVendor, testReview);
+//        FullReview testFullReviewObj2 = new FullReview(testVendor, testReview2);
+
+
+//        Full_Review_Data.addFullReview(testFullReviewObj1);
+//        Full_Review_Data.addFullReview(testFullReviewObj2);
+        //////////////////
 
 
 
 
 
-        /*
+
          /////////////// GENERAL CODES
 
-        //ArrayList<FullReview> ListOfFullReviewObj = FullReviewData.getAllReviewsByVendor(vendor_name);
 
-        VendorName.setText(ListOfFullReviewObj[0].getVendor.getName());
-        VendorLocation.setText(ListOfFullReviewObj[0].getVendor.getLocation());
-        VendorPhoneNo.setText(ListOfFullReviewObj[0].getVendor.getPhone_no());
+
+        ListOfFullReviewObj = Full_Review_Data.getReviewsByVendorId(vendorId);
+        System.out.println(vendorId);
+        System.out.println(ListOfFullReviewObj);
+        this.vendorNameTextView.setText(ListOfFullReviewObj.get(0).getVendor().getName());
+        vendorLocationTextView.setText(ListOfFullReviewObj.get(0).getVendor().getLocation());
+        vendorPhoneTextView.setText(String.valueOf(ListOfFullReviewObj.get(0).getVendor().getPhone_no()));
+
 
         for(FullReview eachFullReview: ListOfFullReviewObj) {
-            users_by_reviews.add(eachFullReview.getReview.getUserid());
+            users_by_reviews.add(eachFullReview.getReview().getUserid());
 
-            ProductName.add(eachFullReview.getReview.getProduct_name());
+            ProductName.add(eachFullReview.getReview().getProduct_name());
 
-            Unit.add(eachFullReview.getReview.getUnit());
+            Unit.add(eachFullReview.getReview().getUnit());
 
-            UnitsPurchased.add(eachFullReview.getReview.getUnits_purchased());
-
-
-            Price_Per_Unit.add(eachFullReview.getReview.getPrice_per_unit());
-
-            ReviewRating.add(eachFullReview.getReview.getRating());
+            UnitsPurchased.add(eachFullReview.getReview().getUnits_purchased());
 
 
-            ProductImages.add(eachFullReview.getReview.getImages());
+            Price_Per_Unit.add(eachFullReview.getReview().getPrice_per_unit());
 
-            reviews_for_vendor.add(eachFullReview.getReview.getComments());
-            reviews_for_vendor_TRUNCATE.add(eachFullReview.getReview.getComments().substring(0, 50) + " ...");
+            ReviewRating.add(eachFullReview.getReview().getRating());
+
+
+            ProductImages.add(eachFullReview.getReview().getImages());
+
+            reviews_for_vendor.add(eachFullReview.getReview().getComments());
+            if (eachFullReview.getReview().getComments().length() > 50) {
+                reviews_for_vendor_TRUNCATE.add(eachFullReview.getReview().getComments().substring(0, 50) + " ...");
+            } else {
+                reviews_for_vendor_TRUNCATE.add(eachFullReview.getReview().getComments());
+            }
 
         }
+        
+        
+        
 
-         */
+
 
 
 
@@ -295,6 +351,9 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         Unit = new ArrayList<String>();
         Price_Per_Unit = new ArrayList<Double>();
         ReviewRating = new ArrayList<Integer>();
+        
+        
+        ListOfFullReviewObj = null; 
     }
 
     
