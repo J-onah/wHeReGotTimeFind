@@ -47,7 +47,13 @@ public class FullReviewData {
         return res;
     }
 
-//    public List<Review> getReviewsByVendor() {
-//        System.out.println("hi");
-//    }
+    public List<FullReview> getReviewsByVendorId(int vendorId) {
+        ArrayList<FullReview> res = new ArrayList<>();
+        for (FullReview full_review: full_reviews) {
+            if (full_review.getVendor().getId() == vendorId) {
+                res.add(full_review);
+            }
+        }
+        return res;
+    }
 }
