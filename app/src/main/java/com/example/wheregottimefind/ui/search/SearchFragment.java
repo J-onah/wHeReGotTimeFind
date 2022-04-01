@@ -27,6 +27,8 @@ import com.example.wheregottimefind.data.FullReviewData;
 import com.example.wheregottimefind.pojo.FullReview;
 import com.example.wheregottimefind.databinding.FragmentSearchBinding;
 
+import java.util.Arrays;
+
 public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
@@ -96,12 +98,15 @@ public class SearchFragment extends Fragment {
         BackendApi.getReviewsByName(s, fullReviews -> {
             Log.d(TAG, "Received data!");
             String fullString = "";
+            Arrays.sort(fullReviews);
             for (FullReview fullreview: fullReviews) {
+
                 Log.d(TAG, fullreview.toString());
                 fullString += fullreview + "\n";
 
                 // Add to FullReviewData
                 full_review_data.addFullReview(fullreview);
+
                 System.out.println(full_review_data.getAllReviews().toString());
             }
 
