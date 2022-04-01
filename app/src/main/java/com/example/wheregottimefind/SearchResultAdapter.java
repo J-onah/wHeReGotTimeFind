@@ -40,7 +40,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         Vendor vendor = mData.get(position);
         String vendorName = vendor.getName();
         String vendorLocation = vendor.getLocation();
-        int vendorPhone = vendor.getPhone_no();
+        long vendorPhone = vendor.getPhone_no();
         int vendorId = vendor.getId();
         holder.myTextView.setText(vendorName);
 
@@ -49,7 +49,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             Bundle args = new Bundle();
             args.putString("vendor_name_key", vendorName);
             args.putString("vendor_location_key", vendorLocation);
-            args.putInt("vendor_phone_no_key", vendorPhone);
+            args.putLong("vendor_phone_no_key", vendorPhone);
             args.putInt("vendor_id_key", vendorId);
             Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
         });

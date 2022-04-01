@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Vendor {
     private String name;
     private String location;
-    private int phone_no;
+    private long phone_no;
     private int id;
 
     @Override
@@ -57,11 +57,11 @@ public class Vendor {
         return name;
     }
 
-    public int getPhone_no() {
+    public long getPhone_no() {
         return phone_no;
     }
 
-    public void setPhone_no(int phone_no) {
+    public void setPhone_no(long phone_no) {
         this.phone_no = phone_no;
     }
 }

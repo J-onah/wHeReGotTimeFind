@@ -28,7 +28,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     final static String TAG = "result_fragment";
     String vendorName;
     String vendorLocation;
-    int vendorPhone;
+    long vendorPhone;
     int vendorId;
 
     ArrayList<String> reviews_for_vendor = new ArrayList<>();
@@ -75,7 +75,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         if (getArguments() != null) {
             vendorName = getArguments().getString("vendor_name_key");
             vendorLocation = getArguments().getString("vendor_location_key");
-            vendorPhone = getArguments().getInt("vendor_phone_no_key");
+            vendorPhone = getArguments().getLong("vendor_phone_no_key");
             vendorId = getArguments().getInt("vendor_id_key");
         } else {
             vendorName = "Vendor Name";
@@ -95,9 +95,9 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         vendorNameTextView.setText(vendorName);
         vendorLocationTextView.setText(vendorLocation);
         if (vendorPhone == -1) {
-            vendorPhoneTextView.setText("Unknown");
+            vendorPhoneTextView.setText("Phone Number Unknown");
         } else {
-//            vendorPhoneTextView.setText(String.valueOf(vendorPhone));
+            vendorPhoneTextView.setText(String.valueOf(vendorPhone));
         }
 
         //TextView result_fragment_text = rootView.findViewById(R.id.result_fragment_text);
