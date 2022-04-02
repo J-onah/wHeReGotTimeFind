@@ -6,33 +6,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="100dp"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/greenlightest"
     tools:context=".ui.login.LoginActivity">
 
-    <EditText
-        android:id="@+id/username"
+    <TextView
+        android:id="@+id/appname_loginpage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:layout_marginTop="96dp"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
+        android:text="wHeReGotTimeFind?!"
+        android:textSize="27dp"
+        android:textColor="@color/green8"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@null"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="96dp"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/loginpage_boxcorners"
+        android:textColorHint="@color/green2"
+        android:textColor="@color/green8"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appname_loginpage" />
+
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="96dp"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
+        android:background="@drawable/loginpage_boxcorners"
+        android:textColorHint="@color/green2"
+        android:textColor="@color/green8"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_lock_open_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -45,20 +76,21 @@
         android:hint="@string/verification_code"
         android:inputType="number"
         android:selectAllOnFocus="true"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/password" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="180dp"
         android:enabled="false"
         android:text="@string/action_sign_in"
+        android:textColor="@color/green8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,3 +110,4 @@
         app:layout_constraintTop_toBottomOf="@id/verification_code" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

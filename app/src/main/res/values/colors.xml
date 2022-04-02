@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!-- for night mode -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+<!-- light mode: green2 to green8 is from light to dark green -->
+    <color name="greenlightest">#d8f3dc</color>
+    <color name="green2">#b7e4c7</color>
+    <color name="green3">#95d5b2</color>
+    <color name="green4">#74c69d</color>
+    <color name="green5">#52b788</color>
+    <color name="green6">#40916c</color>
+    <color name="green7">#40916c</color>
+    <color name="green8">#1b4332</color>
+    <color name="greendarkest">#081c15</color>
+
+
 </resources>
+
