@@ -1,15 +1,19 @@
 package com.example.wheregottimefind.backendAPI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.wheregottimefind.MainActivity;
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.Product;
 import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.Vendor;
 import com.example.wheregottimefind.data.pojo.User;
+import com.example.wheregottimefind.ui.login.LoginActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +44,8 @@ public class BackendApi {
                 FullReview[] fullReviews = response.body();
                 if (response.code() == 200) {
                     updater.updateOnDataReceived(fullReviews);
+                } else if (response.code() == 403) {
+                    logout(context);
                 }
             }
 
@@ -61,6 +67,8 @@ public class BackendApi {
                 }
                 if (response.code() == 200) {
                     updater.updateOnDataReceived(vendors);
+                } else if (response.code() == 403) {
+                    logout(context);
                 }
             }
 
@@ -82,6 +90,8 @@ public class BackendApi {
                 }
                 if (response.code() == 200) {
                     updater.updateOnDataReceived(products);
+                } else if (response.code() == 403) {
+                    logout(context);
                 }
             }
 
@@ -241,5 +251,21 @@ public class BackendApi {
             default:
                 throw new IllegalArgumentException("Backend query type not found!");
         }
+    }
+
+    private static void logout(Context context) {
+        SharedPreferences sharedPref = context
+                .getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(context.getString(R.string.display_name_key), "");
+        editor.putString(context.getString(R.string.username_key), "");
+        editor.putString(context.getString(R.string.temp_auth_key), "");
+        editor.putInt(context.getString(R.string.userid_key), -1);
+        editor.apply();
+
+        Toast.makeText(context, "Authentication token expired. Please login again.", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 }

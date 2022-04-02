@@ -51,6 +51,8 @@ public class ProfileFragment extends Fragment {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(getString(R.string.display_name_key), "");
             editor.putString(getString(R.string.username_key), "");
+            editor.putString(getString(R.string.temp_auth_key), "");
+            editor.putInt(getString(R.string.userid_key), -1);
             editor.apply();
 
             Intent loginActivity = new Intent(getContext(), LoginActivity.class);
