@@ -56,7 +56,7 @@ public class ProfileFragment extends Fragment {
             editor.apply();
 
             Intent loginActivity = new Intent(getContext(), LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            loginActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(loginActivity);
         });
         return root;
