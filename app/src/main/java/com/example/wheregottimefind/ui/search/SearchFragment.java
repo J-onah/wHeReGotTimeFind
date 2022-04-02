@@ -43,9 +43,8 @@ public class SearchFragment extends Fragment {
         if (full_review_data.getAllReviews().size() != 0) {
             recyclerView = binding.searchResults;
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            adapter = new SearchResultAdapter(getContext(), full_review_data.getVendorsFromData());
+            adapter = new SearchResultAdapter(getContext(), full_review_data.getSearchResults());
             recyclerView.setAdapter(adapter);
-            System.out.println("Current full_review_data: " + full_review_data.getAllReviews().toString());
         }
 
 
@@ -113,7 +112,7 @@ public class SearchFragment extends Fragment {
 
             // Update recycler view
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            adapter = new SearchResultAdapter(getContext(), full_review_data.getVendorsFromData());
+            adapter = new SearchResultAdapter(getContext(), full_review_data.getSearchResults());
             adapter.setClickListener(new SearchResultAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
