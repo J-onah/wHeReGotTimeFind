@@ -39,7 +39,8 @@ public class LoginViewModel extends ViewModel {
                     User data = ((Result.Success<User>) result).getData();
                     loginResult.setValue(new LoginResult(
                             new LoggedInUserView(
-                                    String.valueOf(data.getDisplay_name()), data.getName(), data.getTemp_auth_token()
+                                    String.valueOf(data.getDisplay_name()), data.getName(),
+                                    data.getTemp_auth_token(), data.getId()
                             )
                     ));
                 } else if (result instanceof Result.NotRegistered) {

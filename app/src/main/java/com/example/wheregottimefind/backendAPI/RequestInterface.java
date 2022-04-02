@@ -1,5 +1,7 @@
 package com.example.wheregottimefind.backendAPI;
 
+import com.example.wheregottimefind.data.pojo.Product;
+import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.User;
 import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.Vendor;
@@ -21,9 +23,33 @@ public interface RequestInterface {
                                           @Query("username") String username,
                                           @Query("authToken") String authToken);
 
+    @GET("/products/productName/{query}")
+    Call<Product[]> getProductsByProductName(@Path("query") String vendorName,
+                                           @Query("username") String username,
+                                           @Query("authToken") String authToken);
     @POST("/signup")
     Call<User> signup(@Query("newUsername") String username, @Query("newPasswordHash") String passwordHash);
 
     @POST("/login")
     Call<User> login(@Query("username") String username, @Query("passwordHash") String passwordHash);
+
+    @POST("/reviews")
+    Call<Review> postReview(@Query("username") String username,
+                            @Query("authToken") String authToken,
+                            @Query("existingUserId") Integer existingUserId,
+                            @Query("existingProductId") Integer existingProductId,
+                            @Query("newProductName") String newProductName,
+                            @Query("existingVendorId") Integer existingVendorId,
+                            @Query("newVendorName") String newVendorName,
+                            @Query("newVendorLocation") String newVendorLocation,
+                            @Query("newVendorPhoneNo") Long newVendorPhoneNo,
+                            @Query("imagesData") String imagesDataArr,
+                            @Query("existingTagIds") String existingTagIdsArr,
+                            @Query("newTagNames") String newTagNamesArr,
+                            @Query("rating") Integer rating,
+                            @Query("unitsPurchased") Integer unitsPurchased,
+                            @Query("unit") String unit,
+                            @Query("pricePerUnit") Double pricePerUnit,
+                            @Query("comments") String comments);
+
 }

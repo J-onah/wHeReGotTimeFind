@@ -2,7 +2,6 @@ package com.example.wheregottimefind.ui.login;
 
 import android.app.Activity;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -26,12 +25,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.wheregottimefind.MainActivity;
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.ui.login.LoginViewModel;
-import com.example.wheregottimefind.ui.login.LoginViewModelFactory;
 import com.example.wheregottimefind.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -60,13 +56,13 @@ public class LoginActivity extends AppCompatActivity {
 
         // Check SharedPreferences and auto login
         String display_name = sharedPref.getString(getString(R.string.display_name_key), "");
-        String userid = sharedPref.getString(getString(R.string.userid_key), "");
+        String username = sharedPref.getString(getString(R.string.username_key), "");
 
 //        Log.i(TAG, "[SharedPref] display_name: " + display_name);
 //        Log.i(TAG, "[SharedPref] userid: " + userid);
 
-        if (!userid.isEmpty() && !display_name.isEmpty()) {
-            goToMainActivity(display_name, userid);
+        if (!username.isEmpty() && !display_name.isEmpty()) {
+            goToMainActivity(display_name, username);
         }
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -163,8 +159,9 @@ public class LoginActivity extends AppCompatActivity {
         // Set SharedPreferences
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.display_name_key), model.getDisplayName());
-        editor.putString(getString(R.string.userid_key), model.getEmail());
+        editor.putString(getString(R.string.username_key), model.getEmail());
         editor.putString(getString(R.string.temp_auth_key), model.getTempAuthToken());
+        editor.putInt(getString(R.string.userid_key), model.getId());
         editor.apply();
 
         // Explicit Intent to main activity

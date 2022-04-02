@@ -12,12 +12,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wheregottimefind.MainActivity;
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.data.LoginRepository;
-import com.example.wheregottimefind.data.model.LoggedInUser;
 import com.example.wheregottimefind.databinding.FragmentProfileBinding;
 import com.example.wheregottimefind.ui.login.LoginActivity;
 
@@ -53,7 +50,7 @@ public class ProfileFragment extends Fragment {
                     .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString(getString(R.string.display_name_key), "");
-            editor.putString(getString(R.string.userid_key), "");
+            editor.putString(getString(R.string.username_key), "");
             editor.apply();
 
             Intent loginActivity = new Intent(getContext(), LoginActivity.class);

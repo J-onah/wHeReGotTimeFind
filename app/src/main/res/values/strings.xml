@@ -43,7 +43,7 @@
     <string name="submit_review">Submit review</string>
     <string name="review_details">Review Details</string>
     <string name="units_purchased">Units purchased</string>
-    <string name="review_unit">Unit (e.g. qty/pack of 10 etc.)</string>
+    <string name="review_unit">Unit (e.g. pcs/pack of 10 etc.)</string>
     <string name="price_per_unit">Price per unit</string>
     <string name="comments">Comments</string>
     <string name="product_name">Product Name</string>
@@ -51,10 +51,11 @@
     <string name="not_registered">Verification code sent!</string>
     <string name="wrong_verification">Wrong verification code!</string>
     <string name="display_name_key">display_name_key</string>
-    <string name="userid_key">userid_key</string>
+    <string name="username_key">username_key</string>
     <string name="vendor_name_key">vendor_name_key</string>
     <string name="vendor_location_key">vendor_location_key</string>
     <string name="vendor_id_key">vendor_id_key</string>
     <string name="vendor_phone_no_key">vendor_phone_no_key</string>
     <string name="temp_auth_key">temp_auth_key</string>
+    <string name="userid_key">userid_key</string>
 </resources>
