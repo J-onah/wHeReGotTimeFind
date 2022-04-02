@@ -1,125 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#D8F3DC"
     tools:context=".ui.NewReviewFragment">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/vendorHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vendor_details"
-            android:layout_marginTop="6dp"
+            android:layout_height="47dp"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/vendor_details"
+            android:textAlignment="center"
+            android:textColor="#081C15"
             android:textSize="25sp" />
 
         <AutoCompleteTextView
             android:id="@+id/vendor_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
+            android:layout_marginHorizontal="20dp"
             android:completionThreshold="1"
+            android:ems="10"
             android:hint="@string/vendor_name"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/vendor_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:inputType="textPostalAddress"
             android:hint="@string/vendor_location"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="textPostalAddress" />
 
         <EditText
             android:id="@+id/vendor_phone_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:inputType="number|phone"
             android:hint="@string/vendor_phone_no"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="number|phone" />
 
         <TextView
             android:id="@+id/reviewHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/review_details"
-            android:layout_marginTop="6dp"
+            android:layout_height="49dp"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/review_details"
+            android:textAlignment="center"
+            android:textColor="#081C15"
             android:textSize="25sp" />
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5"
             android:layout_gravity="center"
-            android:stepSize="1"/>
+            android:indeterminate="false"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressTint="#FFEB3B"
+            android:stepSize="1" />
 
         <AutoCompleteTextView
             android:id="@+id/review_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="@string/product_name"
+            android:layout_marginHorizontal="20dp"
             android:completionThreshold="1"
-            android:layout_marginHorizontal="20dp"/>
+            android:ems="10"
+            android:hint="@string/product_name"
+            android:inputType="text" />
 
 
         <EditText
             android:id="@+id/review_units_purchased"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:inputType="number"
             android:hint="@string/units_purchased"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/review_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:inputType="text"
             android:hint="@string/review_unit"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/review_price_per_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:inputType="numberDecimal"
             android:hint="@string/price_per_unit"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/review_comments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="375dp"
+            android:layout_height="145dp"
+            android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:inputType="text"
             android:hint="@string/comments"
-            android:layout_marginHorizontal="20dp"/>
+            android:inputType="text" />
 
         <Button
             android:id="@+id/submit_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/submit_review"
-            android:layout_gravity="center">
-        </Button>
+            android:layout_gravity="center"
+            android:text="@string/submit_review"></Button>
 
 
     </LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8F3DC"
     tools:context=".ui.profile.ProfileFragment">
 
     <TextView
@@ -13,35 +14,38 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/profile_display_name"
         android:textAlignment="center"
+        android:textColor="#1B4332"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/profile_display_name"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/profile_userid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:text="@string/profile_userid"
         android:textAlignment="center"
+        android:textColor="#1B4332"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_displayname"
-        android:text="@string/profile_userid"/>
+        app:layout_constraintTop_toBottomOf="@id/profile_displayname" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:layout_marginBottom="32dp"
+        android:src="@drawable/profile"
         app:layout_constraintBottom_toTopOf="@+id/profile_displayname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/profile" />
+        tools:ignore="ImageContrastCheck"
+        tools:src="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/profile_logout"
@@ -49,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Logout"
+        android:textColor="#1B4332"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_userid" />
