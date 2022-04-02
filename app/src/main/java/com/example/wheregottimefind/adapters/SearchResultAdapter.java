@@ -11,17 +11,19 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
+import com.example.wheregottimefind.data.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.SearchResult;
 import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder>{
-    private List<Vendor> mData;
+    private List<SearchResult> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public SearchResultAdapter(Context context, List<Vendor> data) {
+    public SearchResultAdapter(Context context, List<SearchResult> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -36,12 +38,14 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Vendor vendor = mData.get(position);
-        String vendorName = vendor.getName();
-        String vendorLocation = vendor.getLocation();
-        long vendorPhone = vendor.getPhone_no();
-        int vendorId = vendor.getId();
-        holder.myTextView.setText(vendorName);
+        SearchResult result = mData.get(position);
+        String vendorName = result.getVendor().getName();
+        String vendorLocation = result.getVendor().getLocation();
+        long vendorPhone = result.getVendor().getPhone_no();
+        int vendorId = result.getVendor().getId();
+        String itemName = result.getProductName();
+        holder.vendorNameTextView.setText(vendorName);
+        holder.itemNameTextView.setText(itemName);
 
         holder.itemView.setOnClickListener(view -> {
             System.out.println(vendorPhone);
@@ -63,11 +67,13 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        TextView vendorNameTextView;
+        TextView itemNameTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.search_row_vendorname);
+            vendorNameTextView = itemView.findViewById(R.id.search_row_vendorname);
+            itemNameTextView = itemView.findViewById(R.id.search_row_itemname);
             itemView.setOnClickListener(this);
         }
 
@@ -78,7 +84,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     }
 
     // convenience method for getting data at click position
-    Vendor getItem(int id) {
+    SearchResult getItem(int id) {
         return mData.get(id);
     }
 

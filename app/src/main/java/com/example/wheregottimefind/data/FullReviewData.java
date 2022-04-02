@@ -1,6 +1,8 @@
 package com.example.wheregottimefind.data;
 
+import com.example.wheregottimefind.adapters.SearchResultAdapter;
 import com.example.wheregottimefind.data.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.SearchResult;
 import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.ArrayList;
@@ -33,6 +35,16 @@ public class FullReviewData {
 
     public void clearAll() {
         full_reviews = new ArrayList<>();
+    }
+
+    public List<SearchResult> getSearchResults() {
+        Set<SearchResult> searchResults = new HashSet<>();
+        for (FullReview full_review: full_reviews) {
+            SearchResult searchResult = new SearchResult(full_review.getVendor(), full_review.getReview().getProduct_name());
+            searchResults.add(searchResult);
+        }
+        List<SearchResult> res = new ArrayList<>(searchResults);
+        return res;
     }
 
     public List<Vendor> getVendorsFromData() {
