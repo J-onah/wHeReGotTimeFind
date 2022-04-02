@@ -113,6 +113,16 @@
             android:hint="@string/comments"
             android:layout_marginHorizontal="20dp"/>
 
+        <ImageView
+            android:id="@+id/image_choose"
+            android:layout_width="141dp"
+            android:layout_height="33dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="#8BC34A"
+            android:padding="5dp"
+            android:src="@drawable/addbutton" />
+
         <Button
             android:id="@+id/submit_review"
             android:layout_width="wrap_content"

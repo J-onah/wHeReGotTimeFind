@@ -1,12 +1,17 @@
 package com.example.wheregottimefind.ui;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -26,6 +32,9 @@ import com.example.wheregottimefind.data.pojo.Product;
 import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.Vendor;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,10 +47,41 @@ public class NewReviewFragment extends Fragment {
     EditText vendorLocationEdittext;
     EditText vendorPhoneEditText;
     Button submitButton;
+    ImageView image_choose;
 
     public NewReviewFragment() {
         // Required empty public constructor
     }
+
+    private String bitmapToBase64(Bitmap bitmap) {
+        String result = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            if (bitmap != null) {
+                baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                baos.flush();
+                baos.close();
+
+                byte[] bitmapBytes = baos.toByteArray();
+                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush();
+                    baos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 
     private void updateVendors(String vendorName, ArrayAdapter<Vendor> adapter,
                                       AutoCompleteTextView vendorNameTextView) {
@@ -94,6 +134,7 @@ public class NewReviewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -109,6 +150,7 @@ public class NewReviewFragment extends Fragment {
         vendorPhoneEditText = rootView.findViewById(R.id.vendor_phone_no);
         submitButton = rootView.findViewById(R.id.submit_review);
 
+        image_choose = (ImageView) rootView.findViewById(R.id.image_choose);
 
         // Hide FAB when leaving New Review page
         fab = getActivity().findViewById(R.id.fab);
@@ -189,6 +231,21 @@ public class NewReviewFragment extends Fragment {
             }
         });
 
+        image_choose.setOnClickListener(view -> {
+            switch (view.getId()) {
+                        case R.id.image_choose: {
+                            Intent intent = new Intent(Intent.ACTION_PICK, null);
+                            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                    "image/*");
+                            startActivityForResult(intent, 0x1);
+                            break;
+                        }
+                    }
+                });
+
+
+
+
         // Handle submission
         submitButton.setOnClickListener(view -> {
             Integer existingProductId = null;
@@ -209,6 +266,8 @@ public class NewReviewFragment extends Fragment {
             try {
                 // Set loading to true
                 submitButton.setText("Submitting...");
+
+
 
                 // Get all details
                 // -- Vendor
@@ -246,6 +305,9 @@ public class NewReviewFragment extends Fragment {
                 }
 
                 // TODO: Images and Tags
+                Bitmap bitmap = ((BitmapDrawable)image_choose.getDrawable()).getBitmap();
+                imagesDataArr = bitmapToBase64(bitmap);
+                System.out.println(imagesDataArr);
 
                 // -- Review Details
                 // Rating
