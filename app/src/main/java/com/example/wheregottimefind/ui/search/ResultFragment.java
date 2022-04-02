@@ -34,6 +34,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
     String vendorLocation;
     long vendorPhone;
     int vendorId;
+    String itemName;
 
     ArrayList<String> reviews_for_vendor = new ArrayList<>();
     ArrayList<String> reviews_for_vendor_TRUNCATE = new ArrayList<>();
@@ -88,6 +89,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
             vendorLocation = getArguments().getString("vendor_location_key");
             vendorPhone = getArguments().getLong("vendor_phone_no_key");
             vendorId = getArguments().getInt("vendor_id_key");
+            itemName = getArguments().getString("item_name_key");
         } else {
             vendorName = "Vendor Name";
             vendorLocation = "No address available";
@@ -242,7 +244,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
 
-        ListOfFullReviewObj = Full_Review_Data.getReviewsByVendorId(vendorId);
+        ListOfFullReviewObj = Full_Review_Data.getReviewsByVendorIdAndItemName(vendorId, itemName);
         System.out.println(vendorId);
         System.out.println(ListOfFullReviewObj);
         this.vendorNameTextView.setText(ListOfFullReviewObj.get(0).getVendor().getName());

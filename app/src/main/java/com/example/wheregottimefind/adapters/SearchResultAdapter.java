@@ -54,6 +54,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             args.putString("vendor_location_key", vendorLocation);
             args.putLong("vendor_phone_no_key", vendorPhone);
             args.putInt("vendor_id_key", vendorId);
+            args.putString("item_name_key", itemName);
             Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
         });
     }

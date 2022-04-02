@@ -56,6 +56,16 @@ public class FullReviewData {
         return res;
     }
 
+    public List<FullReview> getReviewsByVendorIdAndItemName(int vendorId, String itemName) {
+        ArrayList<FullReview> res = new ArrayList<>();
+        for (FullReview full_review: full_reviews) {
+            if (full_review.getVendor().getId() == vendorId && full_review.getReview().getProduct_name().equals(itemName)) {
+                res.add(full_review);
+            }
+        }
+        return res;
+    }
+
     public List<FullReview> getReviewsByVendorId(int vendorId) {
         ArrayList<FullReview> res = new ArrayList<>();
         for (FullReview full_review: full_reviews) {
