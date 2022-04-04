@@ -113,23 +113,6 @@ public class SearchFragment extends Fragment {
             // Update recycler view
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             adapter = new SearchResultAdapter(getContext(), full_review_data.getSearchResults());
-            adapter.setClickListener(new SearchResultAdapter.ItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    // Pass data to result fragment
-                    String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
-                    Bundle args = new Bundle();
-                    args.putString("vendor_name", vendor_name);
-                    
-                    
-                    
-//                    args.putInt("vendor_id_key", vendorId);         /// how is the ID extracted?
-                    
-                    
-                    
-                    Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
-                }
-            });
             recyclerView.setAdapter(adapter);
             hideProgressBar();
         });

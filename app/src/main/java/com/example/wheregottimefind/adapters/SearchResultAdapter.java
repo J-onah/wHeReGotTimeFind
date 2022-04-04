@@ -11,9 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
-import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.SearchResult;
-import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.List;
 
@@ -43,9 +41,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         String vendorLocation = result.getVendor().getLocation();
         long vendorPhone = result.getVendor().getPhone_no();
         int vendorId = result.getVendor().getId();
+        double averageRating = result.getAverageRating();
         String itemName = result.getProductName();
         holder.vendorNameTextView.setText(vendorName);
         holder.itemNameTextView.setText(itemName);
+        holder.avgRatingTextView.setText("Average rating: " + averageRating);
 
         holder.itemView.setOnClickListener(view -> {
             System.out.println(vendorPhone);
@@ -70,11 +70,13 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView vendorNameTextView;
         TextView itemNameTextView;
+        TextView avgRatingTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
             vendorNameTextView = itemView.findViewById(R.id.search_row_vendorname);
             itemNameTextView = itemView.findViewById(R.id.search_row_itemname);
+            avgRatingTextView = itemView.findViewById(R.id.search_row_avg_rating);
             itemView.setOnClickListener(this);
         }
 

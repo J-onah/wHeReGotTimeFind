@@ -1,5 +1,7 @@
 package com.example.wheregottimefind.data;
 
+import android.util.Log;
+
 import com.example.wheregottimefind.adapters.SearchResultAdapter;
 import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.SearchResult;
@@ -38,13 +40,19 @@ public class FullReviewData {
     }
 
     public List<SearchResult> getSearchResults() {
-        Set<SearchResult> searchResults = new HashSet<>();
+        ArrayList<SearchResult> searchResults = new ArrayList<>();
         for (FullReview full_review: full_reviews) {
             SearchResult searchResult = new SearchResult(full_review.getVendor(), full_review.getReview().getProduct_name());
-            searchResults.add(searchResult);
+            int existingSearchResultIdx = searchResults.indexOf(searchResult);
+            if (existingSearchResultIdx == -1) {
+                searchResult.addToRatings(full_review.getReview().getRating());
+                searchResults.add(searchResult);
+            } else {
+                searchResults.get(existingSearchResultIdx).addToRatings(full_review.getReview().getRating());
+            }
         }
-        List<SearchResult> res = new ArrayList<>(searchResults);
-        return res;
+
+        return searchResults;
     }
 
     public List<Vendor> getVendorsFromData() {
