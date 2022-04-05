@@ -345,10 +345,3 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
 }
-    
-    
-    
-    
-    
-    
-}
