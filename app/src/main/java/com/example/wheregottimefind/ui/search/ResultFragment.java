@@ -107,7 +107,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         // Set vendor details
         vendorNameTextView.setText(vendorName);
         vendorLocationTextView.setText(vendorLocation);
-        if (vendorPhone == -1) {
+        if (vendorPhone <= 0) {
             vendorPhoneTextView.setText("Phone Number Unknown");
         } else {
             vendorPhoneTextView.setText(String.valueOf(vendorPhone));
@@ -144,19 +144,19 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
         ///// TESTING PURPOSES
         ////////////////////
 
-        String REVIEWTEST = "This is a nice shop that that that that that that that that that that that that that that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that that";
-
-
-        Review testReview = new Review("User1", "nails", 5, 3, "piece", 5, new String[]{"1", "2", "3"}, new String[]{"R.drawable.chip"}, REVIEWTEST);
-        Vendor testVendor = new Vendor("POPULAR", "No location availble", 98765432, 1);
+//        String REVIEWTEST = "This is a nice shop that that that that that that that that that that that that that that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that thatthat that that that that that that that that that that that";
+//
+//
+//        Review testReview = new Review("User1", "nails", 5, 3, "piece", 5, new String[]{"1", "2", "3"}, new String[]{"R.drawable.chip"}, REVIEWTEST);
+//        Vendor testVendor = new Vendor("POPULAR", "No location availble", 98765432, 1);
 
         //productImages.add(R.drawable.chip);
         //users_by_reviews.add("User 1");
         //reviews_for_vendor.add(REVIEWTEST);
         //reviews_for_vendor_TRUNCATE.add(REVIEWTEST.substring(0, 50) + " ...");
 
-        REVIEWTEST = "This is a BAD shop     very BAD     don't go    such nah    very no   avoid much.";
-        Review testReview2 = new Review("User2", "nails", 3, 3, "piece", 5, new String[]{"1", "2", "3"}, new String[]{"R.drawable.chip"}, REVIEWTEST);
+//        REVIEWTEST = "This is a BAD shop     very BAD     don't go    such nah    very no   avoid much.";
+//        Review testReview2 = new Review("User2", "nails", 3, 3, "piece", 5, new String[]{"1", "2", "3"}, new String[]{"R.drawable.chip"}, REVIEWTEST);
 
         //reviews_for_vendor.add(REVIEWTEST);
         //reviews_for_vendor_TRUNCATE.add(REVIEWTEST.substring(0, 50) + " ...");
@@ -230,11 +230,11 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
         list_of_FullReview_Obj = full_review_data.getReviewsByVendorIdAndItemName(vendorId, itemName);
-        System.out.println(vendorId);
-        System.out.println(list_of_FullReview_Obj);
-        this.vendorNameTextView.setText(list_of_FullReview_Obj.get(0).getVendor().getName());
-        vendorLocationTextView.setText(list_of_FullReview_Obj.get(0).getVendor().getLocation());
-        vendorPhoneTextView.setText(String.valueOf(list_of_FullReview_Obj.get(0).getVendor().getPhone_no()));
+//        System.out.println(vendorId);
+//        System.out.println(list_of_FullReview_Obj);
+//        this.vendorNameTextView.setText(list_of_FullReview_Obj.get(0).getVendor().getName());
+//        vendorLocationTextView.setText(list_of_FullReview_Obj.get(0).getVendor().getLocation());
+//        vendorPhoneTextView.setText(String.valueOf(list_of_FullReview_Obj.get(0).getVendor().getPhone_no()));
 
 
         for(FullReview eachFullReview: list_of_FullReview_Obj) {

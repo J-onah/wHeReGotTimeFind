@@ -53,14 +53,17 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 Log.i(TAG, "Search query changed to: " + s);
-                showProgressBar();
-                updateRecyclerView(s);
+                if (s.isEmpty()) {
+                    updateRecyclerView(s);
+                }
+//                showProgressBar();
                 return true;
             }
 
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Log.i(TAG, "Search submitted with query: " + s);
+                showProgressBar();
                 updateRecyclerView(s);
                 return true;
             }
@@ -101,13 +104,13 @@ public class SearchFragment extends Fragment {
             Arrays.sort(fullReviews);
             for (FullReview fullreview: fullReviews) {
 
-                Log.d(TAG, fullreview.toString());
+//                Log.d(TAG, fullreview.toString());
                 fullString += fullreview + "\n";
 
                 // Add to FullReviewData
                 full_review_data.addFullReview(fullreview);
 
-                System.out.println(full_review_data.getAllReviews().toString());
+//                System.out.println(full_review_data.getAllReviews().toString());
             }
 
             // Update recycler view

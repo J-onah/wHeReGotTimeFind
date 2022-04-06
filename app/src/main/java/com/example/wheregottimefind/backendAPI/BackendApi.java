@@ -172,12 +172,16 @@ public class BackendApi {
             userid = sharedPref.getInt(context.getString(R.string.userid_key), 0);
         }
 
+        if (newVendorPhoneNo == null) {
+            newVendorPhoneNo = -1L;
+        }
+
         Call<Review> callNewReview = request.postReview(username, authToken, userid, existingProductId,
             newProductName, existingVendorId, newVendorName, newVendorLocation,
             newVendorPhoneNo, imagesDataArr, existingTagIdsArr, newTagNamesArr,
             rating, unitsPurchased, unit, pricePerUnit,
             comments);
-        System.out.println(callNewReview.toString());
+//        System.out.println(callNewReview.toString());
         callNewReview.enqueue(new Callback<Review>() {
             @Override
             public void onResponse(Call<Review> call, Response<Review> response) {
@@ -200,8 +204,6 @@ public class BackendApi {
     /**
      * Asynchronously obtains reviews from database
      *
-     * @param queryType string representing the type of query to obtain
-     * @param updater   an object implementing the AsyncUpdate updater, called on data received
      */
     
     private static void getData(Context context, String queryType, Callback callback, String... queries) {

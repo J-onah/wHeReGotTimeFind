@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.data.pojo.SearchResult;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder>{
@@ -45,10 +46,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         String itemName = result.getProductName();
         holder.vendorNameTextView.setText(vendorName);
         holder.itemNameTextView.setText(itemName);
-        holder.avgRatingTextView.setText("Average rating: " + averageRating);
+        DecimalFormat df = new DecimalFormat("0.0");
+        holder.avgRatingTextView.setText("Average rating: " + df.format(averageRating));
 
         holder.itemView.setOnClickListener(view -> {
-            System.out.println(vendorPhone);
+//            System.out.println(vendorPhone);
             Bundle args = new Bundle();
             args.putString("vendor_name_key", vendorName);
             args.putString("vendor_location_key", vendorLocation);
