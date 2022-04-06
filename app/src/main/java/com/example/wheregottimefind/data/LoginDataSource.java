@@ -51,6 +51,8 @@ public class LoginDataSource {
                         loginListener.onLoginResult(new Result.Error(new IOException(user.getLogin_error())));
                     }
                 });
+            } else {
+                throw new IllegalAccessException("Not SUTD Email");
             }
         } catch (Exception e) {
             Log.e(TAG, e.toString());
