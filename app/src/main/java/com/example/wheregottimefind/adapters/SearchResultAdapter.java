@@ -17,8 +17,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder>{
-    private List<SearchResult> mData;
-    private LayoutInflater mInflater;
+    private final List<SearchResult> mData;
+    private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -47,7 +47,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.vendorNameTextView.setText(vendorName);
         holder.itemNameTextView.setText(itemName);
         DecimalFormat df = new DecimalFormat("0.0");
-        holder.avgRatingTextView.setText("Average rating: " + df.format(averageRating));
+        holder.avgRatingTextView.setText(holder.itemView.getContext().getString(R.string.average_rating, df.format(averageRating)));
 
         holder.itemView.setOnClickListener(view -> {
 //            System.out.println(vendorPhone);

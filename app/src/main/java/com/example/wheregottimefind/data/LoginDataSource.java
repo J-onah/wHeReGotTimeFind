@@ -2,17 +2,13 @@ package com.example.wheregottimefind.data;
 
 import android.util.Log;
 
-import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
-import com.example.wheregottimefind.data.model.LoggedInUser;
-import com.example.wheregottimefind.data.pojo.User;
 import com.example.wheregottimefind.ui.login.OnLoginListener;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
@@ -21,7 +17,6 @@ public class LoginDataSource {
     private static final String TAG = "login_data_source";
 
     public void login(String username, String password, OnLoginListener loginListener) {
-        String displayName;
         String hashedPasswordString;
 
         try {
@@ -61,7 +56,6 @@ public class LoginDataSource {
     }
 
     public void register(String username, String password, OnLoginListener loginListener) {
-        String displayName;
         String hashedPasswordString;
 
 
@@ -99,8 +93,6 @@ public class LoginDataSource {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(password.getBytes(StandardCharsets.UTF_8));
 
-//        byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.US_ASCII));
-        String hashedPasswordString = new String(md.digest());
-        return hashedPasswordString;
+        return new String(md.digest());
     }
 }

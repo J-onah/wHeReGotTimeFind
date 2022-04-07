@@ -61,4 +61,9 @@
     <string name="your_rating">Your rating</string>
     <string name="your_rating_formatted">Your rating: %1$s</string>
     <string name="your_comment_header">Your comment:</string>
+    <string name="my_reviews">My Reviews</string>
+    <string name="average_rating">Average rating: %1$s</string>
+    <string name="itemname">ItemName</string>
+    <string name="vendorname">VendorName</string>
+    <string name="average_rating_text">Average Rating</string>
 </resources>

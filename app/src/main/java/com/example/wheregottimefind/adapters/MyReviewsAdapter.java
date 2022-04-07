@@ -1,25 +1,21 @@
 package com.example.wheregottimefind.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.data.pojo.FullReview;
-import com.example.wheregottimefind.data.pojo.SearchResult;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
 public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.ViewHolder>{
-    private FullReview[] mData;
-    private LayoutInflater mInflater;
+    private final FullReview[] mData;
+    private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -48,17 +44,6 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
         DecimalFormat df = new DecimalFormat("0.0");
         holder.avgRatingTextView.setText(holder.itemView.getContext().getString(R.string.your_rating_formatted, df.format(rating)));
         holder.commentsTextView.setText(comments);
-
-//        holder.itemView.setOnClickListener(view -> {
-////            System.out.println(vendorPhone);
-//            Bundle args = new Bundle();
-//            args.putString("vendor_name_key", vendorName);
-//            args.putString("vendor_location_key", vendorLocation);
-//            args.putLong("vendor_phone_no_key", vendorPhone);
-//            args.putInt("vendor_id_key", vendorId);
-//            args.putString("item_name_key", itemName);
-//            Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
-//        });
     }
 
     // total number of rows

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.wheregottimefind.MainActivity;
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.Product;
@@ -216,7 +215,7 @@ public class BackendApi {
 
             @Override
             public void onFailure(Call<Review> call, Throwable t) {
-                Log.d(TAG, "Failed to get response! " + t.toString());
+                Log.d(TAG, "Failed to get response! " + t);
             }
         });
 
