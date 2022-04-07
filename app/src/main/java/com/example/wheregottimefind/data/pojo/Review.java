@@ -100,7 +100,7 @@ public class Review {
         this.comments = comments;
     }
 
-    public Review(String userid, String product_name, int rating, int units_purchased, String unit, int price_per_unit, String[] tags, String[] images, String comments) {
+    public Review(String userid, String product_name, int rating, int units_purchased, String unit, double price_per_unit, String[] tags, String[] images, String comments) {
         this.userid = userid;
         this.product_name = product_name;
         this.rating = rating;

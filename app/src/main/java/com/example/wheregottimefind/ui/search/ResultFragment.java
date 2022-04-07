@@ -14,11 +14,9 @@ import android.widget.TextView;
 
 import com.example.wheregottimefind.R;
 
-import com.example.wheregottimefind.adapters.ReviewAdaptor_ToCommit;
+import com.example.wheregottimefind.adapters.ReviewAdapter;
 import com.example.wheregottimefind.data.FullReviewData;
 import com.example.wheregottimefind.data.pojo.FullReview;
-import com.example.wheregottimefind.data.pojo.Review;
-import com.example.wheregottimefind.data.pojo.Vendor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ import java.util.List;
  * Use the {@link ResultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.OnReviewListener{
+public class ResultFragment extends Fragment implements ReviewAdapter.OnReviewListener{
     final static String TAG = "result_fragment";
     String vendorName;
     String vendorLocation;
@@ -280,7 +278,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
             if (reviews_for_vendor.isEmpty()) throw new NullPointerException();
 
-            ReviewAdaptor_ToCommit reviewAdaptor = new ReviewAdaptor_ToCommit(getActivity(), users_by_reviews, reviews_for_vendor_TRUNCATE, productImages, unitsPurchased, unit, price_per_unit, productName, reviewRating, vendorName, this);
+            ReviewAdapter reviewAdaptor = new ReviewAdapter(getActivity(), users_by_reviews, reviews_for_vendor_TRUNCATE, productImages, unitsPurchased, unit, price_per_unit, productName, reviewRating, vendorName, this);
             reviewAdaptor.setContext(getActivity());  //https://stackoverflow.com/questions/45336048/why-does-my-android-adapter-not-have-the-getactivity-method
 
             recyclerViewReviews.setAdapter(reviewAdaptor);
@@ -307,7 +305,7 @@ public class ResultFragment extends Fragment implements ReviewAdaptor_ToCommit.O
 
 
     @Override
-    public void onReviewClick(int position, ReviewAdaptor_ToCommit reviewAdaptor) {
+    public void onReviewClick(int position, ReviewAdapter reviewAdaptor) {
         Log.i("ResultFragment: ", "Review Clicked");
         Log.i("ResultFragment: ", Integer.toString(position));
 

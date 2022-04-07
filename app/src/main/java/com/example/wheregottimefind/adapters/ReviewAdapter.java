@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 
 
-public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_ToCommit.ReviewViewHolder> {
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 
     private final static String TAG = "review_adapter";
     ArrayList<String> users, reviews, iUnit, product_name;
@@ -46,7 +46,7 @@ public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_T
     private OnReviewListener this_onReviewListener;
 
 
-    public ReviewAdaptor_ToCommit(Context page, ArrayList<String> users_by_reviews, ArrayList<String> reviews_for_vendor, ArrayList<String[]> PdtImgs, ArrayList<Integer> UnitsPurchased, ArrayList<String> Unit, ArrayList<Double> Price_Per_Unit, ArrayList<String> ProductName, ArrayList<Integer> inputRatings, String vendor_name_input, OnReviewListener onReviewListener){
+    public ReviewAdapter(Context page, ArrayList<String> users_by_reviews, ArrayList<String> reviews_for_vendor, ArrayList<String[]> PdtImgs, ArrayList<Integer> UnitsPurchased, ArrayList<String> Unit, ArrayList<Double> Price_Per_Unit, ArrayList<String> ProductName, ArrayList<Integer> inputRatings, String vendor_name_input, OnReviewListener onReviewListener){
         this.context = page;
         this.users = users_by_reviews;
         this.reviews = reviews_for_vendor;
@@ -253,13 +253,13 @@ public class ReviewAdaptor_ToCommit extends RecyclerView.Adapter<ReviewAdaptor_T
         //https://www.youtube.com/watch?v=69C1ljfDvl0
         @Override
         public void onClick(View view) {
-            onReviewListener.onReviewClick(getBindingAdapterPosition(), ReviewAdaptor_ToCommit.this);
+            onReviewListener.onReviewClick(getBindingAdapterPosition(), ReviewAdapter.this);
 
         }
     }
 
     public interface OnReviewListener{
-        void onReviewClick(int position, ReviewAdaptor_ToCommit reviewAdaptor);
+        void onReviewClick(int position, ReviewAdapter reviewAdaptor);
     }
 
 

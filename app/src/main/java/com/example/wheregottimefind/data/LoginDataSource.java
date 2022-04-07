@@ -40,7 +40,7 @@ public class LoginDataSource {
 
                 // Call login api
                 BackendApi.login(username, hashedPasswordString, user -> {
-                    System.out.println("-----login user: " + user);
+//                    System.out.println("-----login user: " + user);
                     if (user == null) {
                         loginListener.onLoginResult(new Result.Error(new IOException("Null result")));
                     } else if (user.getLogin_error() == null || user.getLogin_error().isEmpty()) {
@@ -75,7 +75,7 @@ public class LoginDataSource {
         try {
             // Call register api
             BackendApi.register(username, hashedPasswordString, user -> {
-                System.out.println("-----register user: " + user);
+//                System.out.println("-----register user: " + user);
                 if (user == null) {
                     loginListener.onLoginResult(new Result.Error(new IOException("Null result")));
                 } else if (user.getId() != 0) {

@@ -58,4 +58,7 @@
     <string name="vendor_phone_no_key">vendor_phone_no_key</string>
     <string name="temp_auth_key">temp_auth_key</string>
     <string name="userid_key">userid_key</string>
+    <string name="your_rating">Your rating</string>
+    <string name="your_rating_formatted">Your rating: %1$s</string>
+    <string name="your_comment_header">Your comment:</string>
 </resources>

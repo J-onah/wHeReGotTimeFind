@@ -56,6 +56,27 @@ public class BackendApi {
         }, productName);
     }
 
+    public static void getReviewsByUsernames(Context context, String usernames,
+                                             AsyncUpdate<FullReview[]> updater) {
+        getData(context, "getReviewsByUsernames", new Callback<FullReview[]>() {
+            @Override
+            public void onResponse(Call<FullReview[]> call, Response<FullReview[]> response) {
+                Log.d(TAG, "Response received! " + response.code());
+                FullReview[] fullReviews = response.body();
+                if (response.code() == 200) {
+                    updater.updateOnDataReceived(fullReviews);
+                } else if (response.code() == 403) {
+                    logout(context);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FullReview[]> call, Throwable t) {
+                Log.d(TAG, "Failed to get response! " + t.getMessage());
+            }
+        }, usernames);
+    }
+
     public static void getVendorsByVendorName(Context context, String vendorName, AsyncUpdate<Vendor[]> updater) {
         getData(context, "getVendorsByVendorName", new Callback<Vendor[]>() {
             @Override
@@ -228,6 +249,12 @@ public class BackendApi {
             case "getReviewsByProductName":
                 Call<FullReview[]> callReview = request.getReviewsByProductName(queries[0], username, authToken);
                 callReview.enqueue(callback);
+                break;
+
+
+            case "getReviewsByUsernames":
+                Call<FullReview[]> callUsernames = request.getReviewsByUsernames(queries[0], username, authToken);
+                callUsernames.enqueue(callback);
                 break;
 
             case "getVendorsByVendorName":

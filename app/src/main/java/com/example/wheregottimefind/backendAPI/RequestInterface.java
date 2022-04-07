@@ -18,6 +18,11 @@ public interface RequestInterface {
                                                @Query("username") String username,
                                                @Query("authToken") String authToken);
 
+    @GET("/reviews/username")
+    Call<FullReview[]> getReviewsByUsernames(@Query("usernames") String usernames,
+                                             @Query("username") String username,
+                                             @Query("authToken") String authToken);
+
     @GET("/vendors/vendorName/{query}")
     Call<Vendor[]> getVendorsByVendorName(@Path("query") String vendorName,
                                           @Query("username") String username,
