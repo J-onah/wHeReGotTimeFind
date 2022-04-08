@@ -1,7 +1,10 @@
 package com.example.wheregottimefind.ui;
 
+import android.app.Activity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
+import android.support.v4.media.MediaBrowserCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
@@ -43,11 +47,13 @@ import java.io.IOException;
  */
 public class NewReviewFragment extends Fragment {
     final static String TAG = "new_review_fragment";
+    private final int CAMERA_REQUEST = 8888;
     FloatingActionButton fab;
     EditText vendorLocationEdittext;
     EditText vendorPhoneEditText;
     Button submitButton;
-    ImageView image_choose;
+    Button takephoto;
+    ImageView imageIV;
 
     public NewReviewFragment() {
         // Required empty public constructor
@@ -81,6 +87,34 @@ public class NewReviewFragment extends Fragment {
         }
         return result;
     }
+
+    public static Bitmap compressImage(Bitmap image , long maxSize) {
+        int byteCount = image.getByteCount();
+        Log.i("yc压缩图片","压缩前大小"+byteCount);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = null;
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        int options = 90;
+        while (baos.toByteArray().length  > maxSize) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
+            if(options == 1){
+                break;
+            }else if (options <= 10) {
+                options -= 1;
+            } else {
+                options -= 10;
+            }
+        }
+        byte[] bytes = baos.toByteArray();
+        if (bytes.length != 0) {
+            bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            int byteCount1 = bitmap.getByteCount();
+            Log.i("yc压缩图片","压缩后大小"+byteCount1);
+        }
+        return bitmap;
+    }
+
 
 
     private void updateVendors(String vendorName, ArrayAdapter<Vendor> adapter,
@@ -131,11 +165,13 @@ public class NewReviewFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,8 +185,9 @@ public class NewReviewFragment extends Fragment {
         vendorLocationEdittext = rootView.findViewById(R.id.vendor_location);
         vendorPhoneEditText = rootView.findViewById(R.id.vendor_phone_no);
         submitButton = rootView.findViewById(R.id.submit_review);
+        takephoto = rootView.findViewById(R.id.takephoto);
+        imageIV = (ImageView) rootView.findViewById(R.id.imageIV);
 
-        image_choose = (ImageView) rootView.findViewById(R.id.image_choose);
 
         // Hide FAB when leaving New Review page
         fab = getActivity().findViewById(R.id.fab);
@@ -231,19 +268,13 @@ public class NewReviewFragment extends Fragment {
             }
         });
 
-        image_choose.setOnClickListener(view -> {
-            switch (view.getId()) {
-                        case R.id.image_choose: {
-                            Intent intent = new Intent(Intent.ACTION_PICK, null);
-                            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                    "image/*");
-                            startActivityForResult(intent, 0x1);
-                            break;
-                        }
-                    }
-                });
 
-
+        takephoto.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View view) {
+                                             SelectImage();
+                                         }
+                                     });
 
 
         // Handle submission
@@ -305,7 +336,8 @@ public class NewReviewFragment extends Fragment {
                 }
 
                 // TODO: Images and Tags
-                Bitmap bitmap = ((BitmapDrawable)image_choose.getDrawable()).getBitmap();
+                Bitmap bitmap = ((BitmapDrawable)imageIV.getDrawable()).getBitmap();
+                bitmap = compressImage(bitmap , 32768);
                 imagesDataArr = bitmapToBase64(bitmap);
                 System.out.println(imagesDataArr);
 
@@ -359,10 +391,28 @@ public class NewReviewFragment extends Fragment {
         return rootView;
     }
 
+
+    private void SelectImage() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);}
+
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST
+                && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            System.out.println(photo);
+            imageIV.setImageBitmap(photo);
+        }
+    }
+
+
+        @Override
     public void onPause() {
         super.onPause();
         // Show FAB when leaving New Review page
         fab.show();
     }
+
 }
