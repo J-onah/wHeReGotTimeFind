@@ -236,7 +236,7 @@ public class ResultFragment extends Fragment implements ReviewAdapter.OnReviewLi
 
 
         for(FullReview eachFullReview: list_of_FullReview_Obj) {
-            users_by_reviews.add(eachFullReview.getReview().getUserid());
+            users_by_reviews.add(eachFullReview.getReview().getUsername());
 
             productName.add(eachFullReview.getReview().getProduct_name());
 
