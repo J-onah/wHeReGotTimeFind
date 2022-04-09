@@ -8,7 +8,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginTop="10dp"
-    android:layout_margin="10dp"
     tools:showIn="@layout/content_product_page">
 
 
@@ -17,11 +16,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/border">
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/GiantProductImage"
@@ -46,12 +46,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-
                 android:text="@string/PRODUCT_NAME"
+                android:textSize="18dp"
                 />
 
             <ImageView
@@ -73,12 +72,10 @@
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_marginTop="3dp"
-                android:layout_marginStart="10dp"
-
                 android:text="@string/USERNAME"
-
+                android:textSize="14dp"
+                android:textColor="@color/green7"
                 app:layout_constraintTop_toBottomOf="@id/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
@@ -90,7 +87,6 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="3.5pt"
                 android:layout_marginTop="-1dp"
                 android:isIndicator="true"
                 app:layout_constraintTop_toBottomOf="@id/username"
@@ -101,8 +97,7 @@
                 android:id="@+id/UnitsPurchased"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="120dp"
                 android:text="@string/UnitsPurchased"
                 app:layout_constraintTop_toBottomOf="@id/ReviewRating"
@@ -113,8 +108,6 @@
                 android:id="@+id/Unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="120dp"
                 android:text="@string/Unit"
                 app:layout_constraintTop_toBottomOf="@id/UnitsPurchased"
@@ -125,8 +118,6 @@
                 android:id="@+id/Price_Per_Unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="120dp"
                 android:text="@string/Price_Per_Unit"
                 app:layout_constraintTop_toBottomOf="@id/Unit"
@@ -138,9 +129,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="120dp"
                 android:text="@string/reviews"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/Price_Per_Unit"
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
