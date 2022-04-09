@@ -49,6 +49,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         DecimalFormat df = new DecimalFormat("0.0");
         holder.avgRatingTextView.setText(holder.itemView.getContext().getString(R.string.average_rating, df.format(averageRating)));
 
+
         holder.itemView.setOnClickListener(view -> {
 //            System.out.println(vendorPhone);
             Bundle args = new Bundle();
