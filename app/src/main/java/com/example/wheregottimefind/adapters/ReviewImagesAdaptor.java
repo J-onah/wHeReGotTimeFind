@@ -59,12 +59,9 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
     //TextView widget.
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
-
-
-
         try{
-            if (iProductImages == null) {
-                byte[] decodedString = Base64.decode(iProductImages[position], Base64.DEFAULT);
+            if (iProductImages != null) {
+                byte[] decodedString = Base64.decode(iProductImages[position].substring(22), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 holder.giantProductImage.setImageBitmap(decodedByte);
             }

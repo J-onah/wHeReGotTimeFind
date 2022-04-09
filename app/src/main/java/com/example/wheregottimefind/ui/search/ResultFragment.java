@@ -249,7 +249,6 @@ public class ResultFragment extends Fragment implements ReviewAdapter.OnReviewLi
 
             reviewRating.add(eachFullReview.getReview().getRating());
 
-
             productImages.add(eachFullReview.getReview().getImages());
 
             reviews_for_vendor.add(eachFullReview.getReview().getComments());
