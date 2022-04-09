@@ -1,6 +1,7 @@
 package com.example.wheregottimefind.ui.search;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,8 @@ import com.example.wheregottimefind.data.FullReviewData;
 import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.databinding.FragmentSearchBinding;
 
+
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class SearchFragment extends Fragment {
 
@@ -33,7 +34,6 @@ public class SearchFragment extends Fragment {
     SearchResultAdapter adapter;
     FullReviewData full_review_data;
     RecyclerView recyclerView;
-
     int ratings=0;
     int prices=0;
     String searchtext = "";
@@ -99,7 +99,6 @@ public class SearchFragment extends Fragment {
                 Log.i(TAG, "Search query changed to: " + s);
                 showProgressBar();
                 updateRecyclerView(s);
-                updateRecyclerView(s);
                 return true;
             }
 
@@ -125,10 +124,10 @@ public class SearchFragment extends Fragment {
 
     private void updateRecyclerView(String s) {
         recyclerView = getActivity().findViewById(R.id.search_results);
-
+        recyclerView.setVisibility(View.INVISIBLE);
         // Skip searching if string is empty
         if (s.isEmpty()) {
-            recyclerView.setVisibility(View.INVISIBLE);
+
             hideProgressBar();
             full_review_data.clearAll();
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -138,9 +137,7 @@ public class SearchFragment extends Fragment {
         }
 
         // Clear data to prevent old data being shown
-        recyclerView.setAdapter(null);
-        recyclerView.setVisibility(View.VISIBLE);
-        full_review_data.clearAll();
+
         BackendApi.getReviewsByName(getActivity(), s, fullReviews -> {
                     if (fullReviews == null) {
                         hideProgressBar();
@@ -156,14 +153,14 @@ public class SearchFragment extends Fragment {
                 Arrays.sort(fullReviews, (first,second)->{return (int) (second.getReview().getPrice_per_unit() -first.getReview().getPrice_per_unit());
                 });
             }
-
+            recyclerView.setAdapter(null);
+            full_review_data.clearAll();
             for (FullReview fullreview: fullReviews) {
-
-                // Add to FullReviewData
                 full_review_data.addFullReview(fullreview);
-
+                // Add to FullReviewData
             }
 
+            System.out.println(full_review_data);
 
             // Update recycler view
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -171,6 +168,12 @@ public class SearchFragment extends Fragment {
 
             recyclerView.setAdapter(adapter);
             hideProgressBar();
+            if (searchtext!=s){
+                updateRecyclerView(searchtext);
+            }
+            else {
+                recyclerView.setVisibility(View.VISIBLE);
+            }
         });
     }
 
