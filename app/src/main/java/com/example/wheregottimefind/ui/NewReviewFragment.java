@@ -1,13 +1,20 @@
 package com.example.wheregottimefind.ui;
 
+import android.Manifest;
 import android.app.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -166,9 +173,43 @@ public class NewReviewFragment extends Fragment {
     }
 
 
+    // for permission check
+    private ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // Permission is granted. Continue the action or workflow in your
+                    // app.
+                } else {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setTitle("Permission Required");
+                    dialog.setTitle("Turn on the camera permission to take photo.");
+                    dialog.setCancelable(false);
+                    dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    dialog.show();
+                }
+            });
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Permission check
+        if (ContextCompat.checkSelfPermission(
+                getActivity(), Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED) {
+        } else {
+            // You can directly ask for the permission.
+            // The registered ActivityResultCallback gets the result of this request.
+            requestPermissionLauncher.launch(
+                    Manifest.permission.CAMERA);
+        }
 
     }
 
@@ -272,7 +313,7 @@ public class NewReviewFragment extends Fragment {
         takephoto.setOnClickListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View view) {
-                                             SelectImage();
+                                             TakePhoto();
                                          }
                                      });
 
@@ -392,7 +433,7 @@ public class NewReviewFragment extends Fragment {
     }
 
 
-    private void SelectImage() {
+    private void TakePhoto() {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);}
 
