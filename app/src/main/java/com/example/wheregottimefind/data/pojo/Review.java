@@ -12,6 +12,19 @@ public class Review {
     private String[] tags;
     private String[] images;
     private String comments;
+    private String username;
+
+    public void setPrice_per_unit(double price_per_unit) {
+        this.price_per_unit = price_per_unit;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getUserid() {
         return userid;
@@ -100,7 +113,7 @@ public class Review {
         this.comments = comments;
     }
 
-    public Review(String userid, String product_name, int rating, int units_purchased, String unit, int price_per_unit, String[] tags, String[] images, String comments) {
+    public Review(String userid, String product_name, int rating, int units_purchased, String unit, double price_per_unit, String[] tags, String[] images, String comments, String username) {
         this.userid = userid;
         this.product_name = product_name;
         this.rating = rating;
@@ -110,5 +123,6 @@ public class Review {
         this.tags = tags;
         this.images = images;
         this.comments = comments;
+        this.username = username;
     }
 }

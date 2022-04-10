@@ -10,30 +10,24 @@
     android:paddingTop="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:showIn="@layout/fragment_result">
-
-
-
-
 
     <ScrollView
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        android:layout_marginBottom="100dp">
+        >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             >
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
 
                 <TextView
                     android:id="@+id/result_vendor_name"
@@ -41,53 +35,49 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="50sp"
+                    android:textColor="@color/black"
                     android:text="@string/VendorName"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorLocation"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     />
 
-
                 <TextView
                     android:id="@+id/VendorLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
+                    android:textSize="15dp"
                     android:text="@string/VendorLocation"
+                    android:textColor="@color/green7"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorPhoneNo"
                     app:layout_constraintTop_toBottomOf="@id/result_vendor_name"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-
                     />
 
                 <TextView
                     android:id="@+id/VendorPhoneNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
+                    android:textSize="15dp"
                     android:text="@string/VendorPhoneNo"
+                    android:textColor="@color/green7"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/ReviewHeader"
                     app:layout_constraintTop_toBottomOf="@id/VendorLocation"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-
                     />
-
-
-
-
 
                 <TextView
                     android:id="@+id/ReviewHeader"
@@ -98,6 +88,7 @@
                     android:textSize="20dp"
                     android:layout_marginTop="30dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/greendarkest"
                     app:layout_constraintBottom_toTopOf="@id/Review_line"
                     app:layout_constraintTop_toBottomOf="@id/VendorLocation"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -114,9 +105,7 @@
                     app:layout_constraintTop_toBottomOf="@id/ReviewHeader"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
-
-                <!-- Adding lines in between, https://stackoverflow.com/questions/9370746/draw-line-under-textview-on-android -->
-
+                
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewReviews"
                     android:layout_width="match_parent"
@@ -155,16 +144,6 @@
 
         </RelativeLayout>
 
-        <!-- https://stackoverflow.com/questions/46013921/multiple-children-in-scrollview -->
-
-
-
     </ScrollView>
-
-
-
-
-
-
 
 </RelativeLayout>

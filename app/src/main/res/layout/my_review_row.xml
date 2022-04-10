@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/border"
+    android:layout_marginVertical="4sp"
+    android:padding="17dp"
+    android:drawableRight = "@drawable/ic_baseline_arrow_forward_ios_24"
+    >
+
+    <TextView
+        android:id="@+id/myreviews_row_itemname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="ItemName"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/myreviews_row_vendorname"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5sp"
+        android:text="VendorName"
+        android:textSize="12.5sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myreviews_row_itemname" />
+
+    <TextView
+        android:id="@+id/myreviews_row_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:text="@string/your_rating"
+        android:textSize="12.5sp"
+        android:textColor="@color/green7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/myreviews_row_vendorname"
+        app:layout_constraintLeft_toRightOf="@id/myreviews_row_vendorname"/>
+
+    <TextView
+        android:id="@+id/myreviews_comments_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/your_comment_header"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myreviews_row_vendorname" />
+
+    <TextView
+        android:id="@+id/myreviews_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Comment"
+        android:textSize="12.5sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myreviews_comments_header" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

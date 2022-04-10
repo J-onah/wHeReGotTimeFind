@@ -49,6 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <EditText
             android:id="@+id/vendor_location"
             android:layout_width="0dp"
@@ -103,6 +104,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
@@ -116,6 +118,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reviewHeader" />
+
 
         <AutoCompleteTextView
             android:id="@+id/review_product_name"
@@ -136,6 +139,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
 
+
         <EditText
             android:id="@+id/review_units_purchased"
             android:layout_width="0dp"
@@ -154,6 +158,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/review_product_name" />
 
+
         <EditText
             android:id="@+id/review_unit"
             android:layout_width="0dp"
@@ -170,6 +175,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/review_units_purchased" />
+
 
         <EditText
             android:id="@+id/review_price_per_unit"
@@ -205,6 +211,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/review_price_per_unit" />
 
+
         <Button
             android:id="@+id/submit_review"
             android:layout_width="wrap_content"
@@ -228,6 +235,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="451dp" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

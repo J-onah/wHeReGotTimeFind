@@ -21,7 +21,7 @@ public class Vendor {
         return Objects.hash(name, location, phone_no, id);
     }
 
-    public Vendor(String name, String location, int phone_no, int id) {
+    public Vendor(String name, String location, long phone_no, int id) {
         this.name = name;
         this.location = location;
         this.phone_no = phone_no;

@@ -2,17 +2,13 @@ package com.example.wheregottimefind.data;
 
 import android.util.Log;
 
-import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
-import com.example.wheregottimefind.data.model.LoggedInUser;
-import com.example.wheregottimefind.data.pojo.User;
 import com.example.wheregottimefind.ui.login.OnLoginListener;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
@@ -21,7 +17,6 @@ public class LoginDataSource {
     private static final String TAG = "login_data_source";
 
     public void login(String username, String password, OnLoginListener loginListener) {
-        String displayName;
         String hashedPasswordString;
 
         try {
@@ -40,7 +35,7 @@ public class LoginDataSource {
 
                 // Call login api
                 BackendApi.login(username, hashedPasswordString, user -> {
-                    System.out.println("-----login user: " + user);
+//                    System.out.println("-----login user: " + user);
                     if (user == null) {
                         loginListener.onLoginResult(new Result.Error(new IOException("Null result")));
                     } else if (user.getLogin_error() == null || user.getLogin_error().isEmpty()) {
@@ -51,6 +46,8 @@ public class LoginDataSource {
                         loginListener.onLoginResult(new Result.Error(new IOException(user.getLogin_error())));
                     }
                 });
+            } else {
+                throw new IllegalAccessException("Not SUTD Email");
             }
         } catch (Exception e) {
             Log.e(TAG, e.toString());
@@ -59,7 +56,6 @@ public class LoginDataSource {
     }
 
     public void register(String username, String password, OnLoginListener loginListener) {
-        String displayName;
         String hashedPasswordString;
 
 
@@ -73,7 +69,7 @@ public class LoginDataSource {
         try {
             // Call register api
             BackendApi.register(username, hashedPasswordString, user -> {
-                System.out.println("-----register user: " + user);
+//                System.out.println("-----register user: " + user);
                 if (user == null) {
                     loginListener.onLoginResult(new Result.Error(new IOException("Null result")));
                 } else if (user.getId() != 0) {
@@ -97,8 +93,6 @@ public class LoginDataSource {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(password.getBytes(StandardCharsets.UTF_8));
 
-//        byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.US_ASCII));
-        String hashedPasswordString = new String(md.digest());
-        return hashedPasswordString;
+        return new String(md.digest());
     }
 }

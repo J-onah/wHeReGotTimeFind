@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
 
-
 public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdaptor.ReviewViewHolder> {
 
     String[] iProductImages;
@@ -23,19 +22,10 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
 
     Context context;
 
-    public ReviewImagesAdaptor(Context page, String[] ProductImages){
+    public ReviewImagesAdaptor(Context page, String[] productImages){
         this.context = page;
-        this.iProductImages = ProductImages;
+        this.iProductImages = productImages;
     }
-
-
-
-
-
-    //RecyclerView calls this method whenever it needs to create a new ViewHolder.
-    //The method creates and initializes the ViewHolder and its associated View,
-    //but does not fill in the view's contents—the ViewHolder has not yet been bound to
-    //specific data.
 
     @NonNull
     @Override
@@ -48,41 +38,23 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
         return new ReviewViewHolder(view);
     }
 
-
-
-
-    //RecyclerView calls this method to associate a ViewHolder with data. The method fetches the appropriate data
-    //and uses the data to fill in the view holder's layout.
-    //For example, if the RecyclerView displays a list of names,
-    //the method might find the appropriate name in the list and fill in the view holder's
-    //TextView widget.
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
-
-
-
         try{
-            if (iProductImages == null) {
-                byte[] decodedString = Base64.decode(iProductImages[position], Base64.DEFAULT);
+            if (iProductImages != null) {
+                byte[] decodedString = Base64.decode(iProductImages[position].substring(22), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                holder.GiantProductImage.setImageBitmap(decodedByte);
+                holder.giantProductImage.setImageBitmap(decodedByte);
             }
             else throw new IndexOutOfBoundsException();
 
         }
         catch(IndexOutOfBoundsException ex){
-            holder.GiantProductImage.setImageResource(R.drawable.blank);
+            holder.giantProductImage.setImageResource(R.drawable.blank);
         }
 
     }
 
-
-
-
-
-    //RecyclerView calls this method to get the size of the data set.
-    //For example, in an address book app, this might be the total number of addresses.
-    //RecyclerView uses this to determine when there are no more items that can be displayed.
 
     @Override
     public int getItemCount() {
@@ -93,19 +65,15 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
 
     public class ReviewViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView GiantProductImage;
-
-
+        ImageView giantProductImage;
 
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            GiantProductImage = itemView.findViewById(R.id.GiantProductImage);
-
+            giantProductImage = itemView.findViewById(R.id.GiantProductImage);
 
         }
-
     }
-
-
 }
+
+
