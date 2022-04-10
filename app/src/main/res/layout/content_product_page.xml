@@ -16,9 +16,8 @@
     <ScrollView
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        >
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -27,18 +26,20 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
                 <TextView
                     android:id="@+id/result_vendor_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="50sp"
+                    android:textSize="40sp"
                     android:textColor="@color/black"
                     android:text="@string/VendorName"
+                    android:padding="10dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorLocation"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -53,7 +54,7 @@
                     android:text="@string/VendorLocation"
                     android:textColor="@color/green7"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorPhoneNo"
@@ -70,7 +71,7 @@
                     android:text="@string/VendorPhoneNo"
                     android:textColor="@color/green7"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/ReviewHeader"
@@ -78,6 +79,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     />
+
 
                 <TextView
                     android:id="@+id/ReviewHeader"
@@ -87,13 +89,15 @@
                     android:textStyle="bold"
                     android:textSize="20dp"
                     android:layout_marginTop="30dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/greendarkest"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@id/Review_line"
                     app:layout_constraintTop_toBottomOf="@id/VendorLocation"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     />
+
 
                 <View
                     android:id="@+id/Review_line"
@@ -111,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
+                    android:padding="10dp"
                     app:layout_constraintTop_toBottomOf="@id/Review_line"/>
 
                 <TextView
@@ -119,9 +124,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="start"
-                    android:paddingTop="500dp"
+                    android:paddingTop="100dp"
                     android:scrollbars="vertical"
                     android:text="@string/reviews"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -132,9 +138,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#FFFFFF"
+                    android:background="@drawable/border"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recyclerViewReviews"
                     app:layout_constraintLeft_toLeftOf="parent"

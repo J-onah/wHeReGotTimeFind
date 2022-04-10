@@ -213,7 +213,7 @@
             android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/comments"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:textAlignment="center"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -266,8 +266,10 @@
             android:text="@string/submit_review"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></Button>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"></Button>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
