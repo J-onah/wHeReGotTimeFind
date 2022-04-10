@@ -97,7 +97,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
 
         try{
-            byte[] decodedString = Base64.decode(productImages.get(position)[0].substring(22), Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(productImages.get(position)[0], Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.productImage.setImageBitmap(decodedByte);
         }

@@ -1,14 +1,20 @@
 package com.example.wheregottimefind.backendAPI;
 
+import com.example.wheregottimefind.data.pojo.ImageArray;
 import com.example.wheregottimefind.data.pojo.Product;
 import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.User;
 import com.example.wheregottimefind.data.pojo.FullReview;
 import com.example.wheregottimefind.data.pojo.Vendor;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -38,6 +44,7 @@ public interface RequestInterface {
     @POST("/login")
     Call<User> login(@Query("username") String username, @Query("passwordHash") String passwordHash);
 
+    @Multipart
     @POST("/reviews")
     Call<Review> postReview(@Query("username") String username,
                             @Query("authToken") String authToken,
@@ -48,7 +55,7 @@ public interface RequestInterface {
                             @Query("newVendorName") String newVendorName,
                             @Query("newVendorLocation") String newVendorLocation,
                             @Query("newVendorPhoneNo") Long newVendorPhoneNo,
-                            @Query("imagesData") String imagesDataArr,
+                            @Part("imagesData") RequestBody imagesDataArr,
                             @Query("existingTagIds") String existingTagIdsArr,
                             @Query("newTagNames") String newTagNamesArr,
                             @Query("rating") Integer rating,

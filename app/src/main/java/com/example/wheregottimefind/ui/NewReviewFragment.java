@@ -38,6 +38,7 @@ import android.widget.Toast;
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.backendAPI.AsyncUpdate;
 import com.example.wheregottimefind.backendAPI.BackendApi;
+import com.example.wheregottimefind.data.pojo.ImageArray;
 import com.example.wheregottimefind.data.pojo.Product;
 import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.Vendor;
@@ -45,6 +46,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -330,7 +334,7 @@ public class NewReviewFragment extends Fragment {
             String newVendorName = null;
             String newVendorLocation = null;
             Long newVendorPhoneNo = null;
-            String imagesDataArr = null;
+            RequestBody imagesDataArr = null;
             String existingTagIdsArr = null;
             String newTagNamesArr = null;
             Integer rating = null;
@@ -342,8 +346,6 @@ public class NewReviewFragment extends Fragment {
             try {
                 // Set loading to true
                 submitButton.setText("Submitting...");
-
-
 
                 // Get all details
                 // -- Vendor
@@ -380,10 +382,9 @@ public class NewReviewFragment extends Fragment {
                     };
                 }
 
-                // TODO: Images and Tags
                 Bitmap bitmap = ((BitmapDrawable)imageIV.getDrawable()).getBitmap();
                 bitmap = compressImage(bitmap , 32768);
-                imagesDataArr = bitmapToBase64(bitmap);
+                imagesDataArr = RequestBody.create(MediaType.parse("text/plain"), (bitmapToBase64(bitmap)));
                 System.out.println(imagesDataArr);
 
                 // -- Review Details

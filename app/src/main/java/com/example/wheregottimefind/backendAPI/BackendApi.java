@@ -8,12 +8,14 @@ import android.widget.Toast;
 
 import com.example.wheregottimefind.R;
 import com.example.wheregottimefind.data.pojo.FullReview;
+import com.example.wheregottimefind.data.pojo.ImageArray;
 import com.example.wheregottimefind.data.pojo.Product;
 import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.Vendor;
 import com.example.wheregottimefind.data.pojo.User;
 import com.example.wheregottimefind.ui.login.LoginActivity;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -167,7 +169,7 @@ public class BackendApi {
     public static void postReview(Context context, Integer existingProductId,
                                   String newProductName, Integer existingVendorId,
                                   String newVendorName, String newVendorLocation,
-                                  Long newVendorPhoneNo, String imagesDataArr,
+                                  Long newVendorPhoneNo, RequestBody imagesDataArr,
                                   String existingTagIdsArr, String newTagNamesArr,
                                   Integer rating, Integer unitsPurchased,
                                   String unit, Double pricePerUnit,
