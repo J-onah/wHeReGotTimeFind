@@ -1,8 +1,6 @@
 package com.example.wheregottimefind.data.pojo;
 
-import java.util.Comparator;
-
-public class FullReview implements Comparable<FullReview> {
+public class FullReview  {
     private Vendor vendor;
     private Review review;
 
@@ -34,34 +32,4 @@ public class FullReview implements Comparable<FullReview> {
                 ", review=" + review +
                 '}';
     }
-
-    @Override
-    //by default will be rating for now
-    public int compareTo(FullReview compare) {
-        int cmp = compare.getReview().getRating() - this.getReview().getRating();
-        //if equal rating sort by number of purchases instead
-        if (cmp == 0) {
-            return compare.getReview().getUnits_purchased() - this.getReview().getUnits_purchased();
-        }
-        return cmp;
-    }
-
-    public static Comparator<FullReview> SortByRating = new Comparator<FullReview>() {
-        public int compare(FullReview fullReview, FullReview t1) {
-            return t1.getReview().getRating() -fullReview.getReview().getRating();
-        }
-    };
-    public static Comparator<FullReview> SortByUnitPrice = new Comparator<FullReview>() {
-        public int compare(FullReview fullReview, FullReview t1) {
-            return (int) (t1.getReview().getPrice_per_unit() -fullReview.getReview().getPrice_per_unit());
-        }
-    };
-
-    public static Comparator<FullReview> SortByUnit = new Comparator<FullReview>() {
-        public int compare(FullReview fullReview, FullReview t1) {
-            return t1.getReview().getUnits_purchased() -fullReview.getReview().getUnits_purchased();
-        }
-    };
-
-
 }

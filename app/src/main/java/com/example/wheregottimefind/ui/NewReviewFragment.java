@@ -1,12 +1,28 @@
 package com.example.wheregottimefind.ui;
 
+import android.Manifest;
+import android.app.Activity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
+import android.support.v4.media.MediaBrowserCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -26,6 +43,9 @@ import com.example.wheregottimefind.data.pojo.Review;
 import com.example.wheregottimefind.data.pojo.Vendor;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NewReviewFragment#newInstance} factory method to
@@ -33,14 +53,75 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  */
 public class NewReviewFragment extends Fragment {
     final static String TAG = "new_review_fragment";
+    private final int CAMERA_REQUEST = 8888;
     FloatingActionButton fab;
     EditText vendorLocationEdittext;
     EditText vendorPhoneEditText;
     Button submitButton;
+    Button takephoto;
+    ImageView imageIV;
 
     public NewReviewFragment() {
         // Required empty public constructor
     }
+
+    private String bitmapToBase64(Bitmap bitmap) {
+        String result = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            if (bitmap != null) {
+                baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                baos.flush();
+                baos.close();
+
+                byte[] bitmapBytes = baos.toByteArray();
+                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush();
+                    baos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public static Bitmap compressImage(Bitmap image , long maxSize) {
+        int byteCount = image.getByteCount();
+        Log.i("yc压缩图片","压缩前大小"+byteCount);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Bitmap bitmap = null;
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        int options = 90;
+        while (baos.toByteArray().length  > maxSize) {
+            baos.reset();
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
+            if(options == 1){
+                break;
+            }else if (options <= 10) {
+                options -= 1;
+            } else {
+                options -= 10;
+            }
+        }
+        byte[] bytes = baos.toByteArray();
+        if (bytes.length != 0) {
+            bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            int byteCount1 = bitmap.getByteCount();
+            Log.i("yc压缩图片","压缩后大小"+byteCount1);
+        }
+        return bitmap;
+    }
+
+
 
     private void updateVendors(String vendorName, ArrayAdapter<Vendor> adapter,
                                       AutoCompleteTextView vendorNameTextView) {
@@ -90,10 +171,47 @@ public class NewReviewFragment extends Fragment {
         return fragment;
     }
 
+
+    // for permission check
+    private ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // Permission is granted. Continue the action or workflow in your
+                    // app.
+                } else {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setTitle("Permission Required");
+                    dialog.setTitle("Turn on the camera permission to take photo.");
+                    dialog.setCancelable(false);
+                    dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    dialog.show();
+                }
+            });
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Permission check
+        if (ContextCompat.checkSelfPermission(
+                getActivity(), Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED) {
+        } else {
+            // You can directly ask for the permission.
+            // The registered ActivityResultCallback gets the result of this request.
+            requestPermissionLauncher.launch(
+                    Manifest.permission.CAMERA);
+        }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,6 +225,8 @@ public class NewReviewFragment extends Fragment {
         vendorLocationEdittext = rootView.findViewById(R.id.vendor_location);
         vendorPhoneEditText = rootView.findViewById(R.id.vendor_phone_no);
         submitButton = rootView.findViewById(R.id.submit_review);
+        takephoto = rootView.findViewById(R.id.takephoto);
+        imageIV = (ImageView) rootView.findViewById(R.id.imageIV);
 
 
         // Hide FAB when leaving New Review page
@@ -193,6 +313,15 @@ public class NewReviewFragment extends Fragment {
             }
         });
 
+
+        takephoto.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View view) {
+                                             TakePhoto();
+                                         }
+                                     });
+
+
         // Handle submission
         submitButton.setOnClickListener(view -> {
             Integer existingProductId = null;
@@ -213,6 +342,8 @@ public class NewReviewFragment extends Fragment {
             try {
                 // Set loading to true
                 submitButton.setText("Submitting...");
+
+
 
                 // Get all details
                 // -- Vendor
@@ -250,6 +381,10 @@ public class NewReviewFragment extends Fragment {
                 }
 
                 // TODO: Images and Tags
+                Bitmap bitmap = ((BitmapDrawable)imageIV.getDrawable()).getBitmap();
+                bitmap = compressImage(bitmap , 32768);
+                imagesDataArr = bitmapToBase64(bitmap);
+                System.out.println(imagesDataArr);
 
                 // -- Review Details
                 // Rating
@@ -301,10 +436,28 @@ public class NewReviewFragment extends Fragment {
         return rootView;
     }
 
+
+    private void TakePhoto() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);}
+
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST
+                && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            System.out.println(photo);
+            imageIV.setImageBitmap(photo);
+        }
+    }
+
+
+        @Override
     public void onPause() {
         super.onPause();
         // Show FAB when leaving New Review page
         fab.show();
     }
+
 }
