@@ -4,149 +4,277 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@android:color/white"
     tools:context=".ui.NewReviewFragment">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
 
         <TextView
             android:id="@+id/vendorHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
+            android:layout_width="472dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="616dp"
+            android:background="@drawable/boxgreen"
             android:text="@string/vendor_details"
-            android:textSize="25sp" />
+            android:textAlignment="center"
+            android:textColor="#081C15"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <AutoCompleteTextView
             android:id="@+id/vendor_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="568dp"
             android:completionThreshold="1"
             android:ems="10"
             android:hint="@string/vendor_name"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/vendor_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:ems="10"
-            android:hint="@string/vendor_location"
-            android:inputType="textPostalAddress" />
+            android:inputType="text"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/vendor_phone_no"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="129dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="490dp"
             android:ems="10"
             android:hint="@string/vendor_phone_no"
-            android:inputType="number|phone" />
+            android:inputType="number|phone"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/vendor_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="529dp"
+            android:ems="10"
+            android:hint="@string/vendor_location"
+            android:inputType="textPostalAddress"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
 
         <TextView
             android:id="@+id/reviewHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
+            android:layout_width="477dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="181dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="439dp"
+            android:background="@drawable/boxgreen"
             android:text="@string/review_details"
-            android:textSize="25sp" />
+            android:textAlignment="center"
+            android:textColor="#081C15"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.463"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="226dp"
+            android:layout_marginBottom="375dp"
+            android:indeterminate="false"
+            android:isIndicator="false"
             android:numStars="5"
-            android:stepSize="1" />
+            android:progressTint="#40916c"
+            android:stepSize="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75" />
 
         <AutoCompleteTextView
             android:id="@+id/review_product_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="297dp"
+            android:layout_marginBottom="316dp"
             android:completionThreshold="1"
             android:ems="10"
             android:hint="@string/product_name"
-            android:inputType="text" />
-
+            android:inputType="text"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/imageIV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/review_units_purchased"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_width="217dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="@string/units_purchased"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.012"
+            app:layout_constraintStart_toEndOf="@+id/imageIV"
+            app:layout_constraintTop_toBottomOf="@+id/review_product_name" />
 
         <EditText
             android:id="@+id/review_unit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
             android:ems="10"
             android:hint="@string/review_unit"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toTopOf="@+id/review_price_per_unit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/imageIV"
+            app:layout_constraintTop_toBottomOf="@+id/review_units_purchased" />
 
         <EditText
             android:id="@+id/review_price_per_unit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="464dp"
+            android:layout_marginBottom="148dp"
             android:ems="10"
             android:hint="@string/price_per_unit"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/imageIV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/review_comments"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="513dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/comments"
-            android:inputType="textMultiLine" />
-
-
-        <TextView
-            android:id="@+id/reviewHeader2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="6dp"
-            android:text="@string/add_a_photo"
-            android:textSize="25sp" />
+            android:inputType="textMultiLine"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/takephoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="151dp"
+            android:layout_height="44dp"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="@string/takephoto" />
+            android:text="@string/takephoto"
+            app:layout_constraintBottom_toTopOf="@+id/review_comments"
+            app:layout_constraintEnd_toStartOf="@+id/review_price_per_unit"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageIV"
+            app:layout_constraintVertical_bias="0.157" />
 
         <ImageView
             android:id="@+id/imageIV"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:background="#EFEDED" />
-
+            android:layout_width="194dp"
+            android:layout_height="168dp"
+            android:background="#EFEDED"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/submit_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/submit_review" />
+            android:layout_marginStart="151dp"
+            android:layout_marginTop="610dp"
+            android:layout_marginEnd="151dp"
+            android:text="@string/submit_review"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"></Button>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="451dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="227dp" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
