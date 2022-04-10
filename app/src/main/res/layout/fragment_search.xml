@@ -20,17 +20,21 @@
         <Button
             android:id="@+id/lowhighrating"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Rating: Low to High" />
+            android:background="@drawable/boxgreen"
+            android:text="Rating: Low to High"
+            android:textSize="12dp" />
 
         <Button
             android:id="@+id/notprice"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:textSize="12dp"
+            android:background="@drawable/boxgreen"
             android:text="Price: Low to High" />
 
     </LinearLayout>
@@ -40,6 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
+        android:background="@drawable/headerbox"
         android:queryHint="@string/query_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +75,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="407dp"
-        android:layout_height="74dp"
+        android:layout_width="406dp"
+        android:layout_height="58dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar">
@@ -79,18 +84,22 @@
         <Button
             android:id="@+id/highlowrating"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Rating: High to low" />
+            android:background="@drawable/boxgreen"
+            android:text="Rating: High to low"
+            android:textSize="12dp" />
 
         <Button
             android:id="@+id/price"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Price: High to low" />
+            android:background="@drawable/boxgreen"
+            android:text="Price: High to low"
+            android:textSize="12dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
