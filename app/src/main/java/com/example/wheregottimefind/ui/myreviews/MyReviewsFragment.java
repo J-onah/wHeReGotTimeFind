@@ -19,6 +19,9 @@ import com.example.wheregottimefind.adapters.MyReviewsAdapter;
 import com.example.wheregottimefind.backendAPI.BackendApi;
 import com.example.wheregottimefind.databinding.FragmentMyreviewsBinding;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class MyReviewsFragment extends Fragment {
 
     private FragmentMyreviewsBinding binding;
@@ -35,6 +38,7 @@ public class MyReviewsFragment extends Fragment {
         String currentUsername = sharedPref.getString(getString(R.string.username_key), "");
         BackendApi.getReviewsByUsernames(getActivity(), currentUsername, array -> {
             try {
+                Collections.reverse(Arrays.asList(array));
                 ProgressBar loadingBar = binding.myreviewsProgress;
                 loadingBar.setVisibility(View.GONE);
                 RecyclerView recyclerView= binding.myReviewsRecycler;
