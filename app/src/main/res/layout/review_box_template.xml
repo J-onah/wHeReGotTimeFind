@@ -45,6 +45,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/PRODUCT_NAME"
+                app:layout_constraintEnd_toStartOf="@id/ProductImage"
                 android:textSize="18dp"
                 />
 
