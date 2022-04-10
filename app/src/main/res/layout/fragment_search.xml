@@ -21,7 +21,7 @@
             android:id="@+id/lowhighrating"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Rating: Low to High" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/notprice"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Price: Low to High" />
 
@@ -71,7 +71,7 @@
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="407dp"
-        android:layout_height="74dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar">
@@ -80,7 +80,7 @@
             android:id="@+id/highlowrating"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Rating: High to low" />
 
@@ -88,7 +88,7 @@
             android:id="@+id/price"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Price: High to low" />
     </LinearLayout>

@@ -45,7 +45,7 @@
     <string name="units_purchased">Units purchased</string>
     <string name="review_unit">Unit (e.g. pcs/pack of 10 etc.)</string>
     <string name="price_per_unit">Price per unit</string>
-    <string name="comments">Comments</string>
+    <string name="comments">Comments (product quality, delivery speed, service quality etc.)</string>
     <string name="product_name">Product Name</string>
     <string name="verification_code">Verification Code</string>
     <string name="not_registered">Verification code sent!</string>
