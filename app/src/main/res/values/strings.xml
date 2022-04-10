@@ -68,4 +68,8 @@
     <string name="average_rating_text">Average Rating</string>
     <string name="add_a_photo">Add a photo</string>
     <string name="takephoto">Take photo</string>
+    <string name="rating_high_to_low">Rating: High to low</string>
+    <string name="price_high_to_low">Price: High to low</string>
+    <string name="price_low_to_high">Price: Low to High</string>
+    <string name="rating_low_to_high">Rating: Low to High</string>
 </resources>
