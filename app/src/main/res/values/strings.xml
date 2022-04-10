@@ -66,4 +66,6 @@
     <string name="itemname">ItemName</string>
     <string name="vendorname">VendorName</string>
     <string name="average_rating_text">Average Rating</string>
+    <string name="add_a_photo">Add a photo</string>
+    <string name="takephoto">takephoto</string>
 </resources>
