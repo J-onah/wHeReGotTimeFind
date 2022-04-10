@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wheregottimefind.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
@@ -127,7 +128,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
 
         try{
-            pricePerUnitText = "Price per unit: $" + iPrice_Per_Unit.get(position);
+            DecimalFormat df = new DecimalFormat("0.00");
+            pricePerUnitText = "Price per unit: $" + df.format(iPrice_Per_Unit.get(position));
             holder.price_per_unit.setText(pricePerUnitText);
         }
         catch(IndexOutOfBoundsException ex){
@@ -137,11 +139,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
 
         try{
-            product_nameText = "Product: " + product_name.get(position);
+            product_nameText = product_name.get(position);
             holder.product_name.setText(product_nameText);
         }
         catch(IndexOutOfBoundsException ex){
-            product_nameText = "Product: " + NIL;
+            product_nameText = NIL;
             holder.product_name.setText(product_nameText);
         }
 
