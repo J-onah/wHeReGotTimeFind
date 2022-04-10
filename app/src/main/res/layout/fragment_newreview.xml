@@ -19,7 +19,6 @@
             android:layout_width="472dp"
             android:layout_height="37dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="7dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="616dp"
             android:background="@drawable/boxgreen"
@@ -36,7 +35,7 @@
 
         <AutoCompleteTextView
             android:id="@+id/vendor_name"
-            android:layout_width="423dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="51dp"
@@ -56,7 +55,7 @@
 
         <EditText
             android:id="@+id/vendor_phone_no"
-            android:layout_width="423dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="129dp"
@@ -75,7 +74,7 @@
 
         <EditText
             android:id="@+id/vendor_location"
-            android:layout_width="423dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="90dp"
@@ -113,13 +112,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="111dp"
             android:layout_marginTop="226dp"
-            android:layout_marginEnd="112dp"
             android:layout_marginBottom="375dp"
             android:indeterminate="false"
             android:isIndicator="false"
@@ -128,19 +126,16 @@
             android:stepSize="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
+            app:layout_constraintVertical_bias="0.75" />
 
         <AutoCompleteTextView
             android:id="@+id/review_product_name"
-            android:layout_width="216dp"
+            android:layout_width="0dp"
             android:layout_height="43dp"
-            android:layout_marginStart="213dp"
             android:layout_marginTop="297dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="316dp"
             android:completionThreshold="1"
             android:ems="10"
@@ -150,7 +145,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageIV"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -158,21 +153,20 @@
             android:id="@+id/review_units_purchased"
             android:layout_width="217dp"
             android:layout_height="36dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="@string/units_purchased"
             android:inputType="number"
             android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.012"
             app:layout_constraintStart_toEndOf="@+id/imageIV"
             app:layout_constraintTop_toBottomOf="@+id/review_product_name" />
 
         <EditText
             android:id="@+id/review_unit"
-            android:layout_width="216dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="@string/review_unit"
             android:inputType="text"
@@ -180,16 +174,14 @@
             app:layout_constraintBottom_toTopOf="@+id/review_price_per_unit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageIV"
             app:layout_constraintTop_toBottomOf="@+id/review_units_purchased" />
 
         <EditText
             android:id="@+id/review_price_per_unit"
-            android:layout_width="215dp"
+            android:layout_width="0dp"
             android:layout_height="44dp"
-            android:layout_marginStart="214dp"
             android:layout_marginTop="464dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="148dp"
             android:ems="10"
             android:hint="@string/price_per_unit"
@@ -198,13 +190,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageIV"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/review_comments"
-            android:layout_width="441dp"
+            android:layout_width="match_parent"
             android:layout_height="105dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="513dp"
@@ -226,34 +218,25 @@
             android:layout_width="151dp"
             android:layout_height="44dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="469dp"
-            android:layout_marginEnd="278dp"
-            android:layout_marginBottom="145dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/takephoto"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/review_comments"
+            app:layout_constraintEnd_toStartOf="@+id/review_price_per_unit"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageIV"
             app:layout_constraintVertical_bias="0.157" />
 
         <ImageView
             android:id="@+id/imageIV"
             android:layout_width="194dp"
             android:layout_height="168dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="296dp"
-            android:layout_marginEnd="254dp"
-            android:layout_marginBottom="194dp"
             android:background="#EFEDED"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
