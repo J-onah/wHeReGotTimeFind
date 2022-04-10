@@ -139,11 +139,11 @@ public class SearchFragment extends Fragment {
         // Clear data to prevent old data being shown
 
         BackendApi.getReviewsByName(getActivity(), s, fullReviews -> {
-                    if (fullReviews == null) {
-                        hideProgressBar();
-                        Toast.makeText(getActivity(), "Unable to connect to server!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+            if (fullReviews == null) {
+                hideProgressBar();
+                Toast.makeText(getActivity(), "Unable to connect to server!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Log.d(TAG, "Received data!");
             if (prices ==-1){
                 Arrays.sort(fullReviews, (first,second)->{return (int) (first.getReview().getPrice_per_unit() -second.getReview().getPrice_per_unit());
@@ -167,11 +167,11 @@ public class SearchFragment extends Fragment {
             adapter = new SearchResultAdapter(getContext(), full_review_data.getSearchResults(ratings));
 
             recyclerView.setAdapter(adapter);
-            hideProgressBar();
             if (searchtext!=s){
                 updateRecyclerView(searchtext);
             }
             else {
+                hideProgressBar();
                 recyclerView.setVisibility(View.VISIBLE);
             }
         });
