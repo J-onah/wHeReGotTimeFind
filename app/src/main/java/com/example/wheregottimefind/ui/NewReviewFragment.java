@@ -27,7 +27,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -250,7 +249,12 @@ public class NewReviewFragment extends Fragment {
 
             // Fill in other fields
             vendorLocationEdittext.setText(clickedProduct.getLocation());
-            vendorPhoneEditText.setText(String.valueOf(clickedProduct.getPhone_no()));
+            Long vendorPhoneNo = clickedProduct.getPhone_no();
+            if (vendorPhoneNo <= 0) {
+                vendorPhoneEditText.setText("Phone number unknown!");
+            } else {
+                vendorPhoneEditText.setText(String.valueOf(vendorPhoneNo));
+            }
             vendorLocationEdittext.setEnabled(false);
             vendorPhoneEditText.setEnabled(false);
 
@@ -357,7 +361,7 @@ public class NewReviewFragment extends Fragment {
                         newVendorPhoneNo = Long.valueOf(newVendorPhoneNoString);
                     }
 
-                    System.out.println("vendorphone" + newVendorPhoneNo);
+//                    System.out.println("vendorphone" + newVendorPhoneNo);
                     if (newVendorName.isEmpty() || newVendorLocation.isEmpty()) {
                         throw new IllegalArgumentException("Vendor details must not be empty!");
                     };

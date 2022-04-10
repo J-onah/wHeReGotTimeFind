@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wheregottimefind.R;
 
 
+
 public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdaptor.ReviewViewHolder> {
 
     String[] iProductImages;
@@ -23,9 +24,9 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
 
     Context context;
 
-    public ReviewImagesAdaptor(Context page, String[] ProductImages){
+    public ReviewImagesAdaptor(Context page, String[] productImages){
         this.context = page;
-        this.iProductImages = ProductImages;
+        this.iProductImages = productImages;
     }
 
 
@@ -58,20 +59,17 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
     //TextView widget.
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
-
-
-
         try{
-            if (iProductImages == null) {
-                byte[] decodedString = Base64.decode(iProductImages[position], Base64.DEFAULT);
+            if (iProductImages != null) {
+                byte[] decodedString = Base64.decode(iProductImages[position].substring(22), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                holder.GiantProductImage.setImageBitmap(decodedByte);
+                holder.giantProductImage.setImageBitmap(decodedByte);
             }
             else throw new IndexOutOfBoundsException();
 
         }
         catch(IndexOutOfBoundsException ex){
-            holder.GiantProductImage.setImageResource(R.drawable.blank);
+            holder.giantProductImage.setImageResource(R.drawable.blank);
         }
 
     }
@@ -93,14 +91,14 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
 
     public class ReviewViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView GiantProductImage;
+        ImageView giantProductImage;
 
 
 
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            GiantProductImage = itemView.findViewById(R.id.GiantProductImage);
+            giantProductImage = itemView.findViewById(R.id.GiantProductImage);
 
 
         }
@@ -109,3 +107,5 @@ public class ReviewImagesAdaptor extends RecyclerView.Adapter<ReviewImagesAdapto
 
 
 }
+
+

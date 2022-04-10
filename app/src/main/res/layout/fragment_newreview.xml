@@ -111,8 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:ems="10"
-            android:hint="@string/comments"
-            android:inputType="text" />
+            android:inputType="textMultiLine" />
 
 
         <TextView
@@ -145,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/submit_review"></Button>
+            android:text="@string/submit_review" />
 
 
     </LinearLayout>

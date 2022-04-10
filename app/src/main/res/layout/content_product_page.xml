@@ -10,18 +10,17 @@
     android:paddingTop="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:showIn="@layout/fragment_result">
-
-
 
 
 
     <ScrollView
         android:id="@+id/ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_marginBottom="100dp">
+        >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -41,9 +40,10 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="50sp"
+                    android:textColor="@color/black"
                     android:text="@string/VendorName"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorLocation"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -55,10 +55,11 @@
                     android:id="@+id/VendorLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
+                    android:textSize="15dp"
                     android:text="@string/VendorLocation"
+                    android:textColor="@color/green7"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/VendorPhoneNo"
@@ -72,10 +73,11 @@
                     android:id="@+id/VendorPhoneNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
+                    android:textSize="15dp"
                     android:text="@string/VendorPhoneNo"
+                    android:textColor="@color/green7"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toTopOf="@id/ReviewHeader"
@@ -98,6 +100,7 @@
                     android:textSize="20dp"
                     android:layout_marginTop="30dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/greendarkest"
                     app:layout_constraintBottom_toTopOf="@id/Review_line"
                     app:layout_constraintTop_toBottomOf="@id/VendorLocation"
                     app:layout_constraintLeft_toLeftOf="parent"

@@ -53,14 +53,17 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 Log.i(TAG, "Search query changed to: " + s);
-                showProgressBar();
-                updateRecyclerView(s);
+                if (s.isEmpty()) {
+                    updateRecyclerView(s);
+                }
+//                showProgressBar();
                 return true;
             }
 
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Log.i(TAG, "Search submitted with query: " + s);
+                showProgressBar();
                 updateRecyclerView(s);
                 return true;
             }
@@ -101,35 +104,18 @@ public class SearchFragment extends Fragment {
             Arrays.sort(fullReviews);
             for (FullReview fullreview: fullReviews) {
 
-                Log.d(TAG, fullreview.toString());
+//                Log.d(TAG, fullreview.toString());
                 fullString += fullreview + "\n";
 
                 // Add to FullReviewData
                 full_review_data.addFullReview(fullreview);
 
-                System.out.println(full_review_data.getAllReviews().toString());
+//                System.out.println(full_review_data.getAllReviews().toString());
             }
 
             // Update recycler view
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             adapter = new SearchResultAdapter(getContext(), full_review_data.getSearchResults());
-            adapter.setClickListener(new SearchResultAdapter.ItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    // Pass data to result fragment
-                    String vendor_name = ((TextView) view.findViewById(R.id.search_row_vendorname)).getText().toString();
-                    Bundle args = new Bundle();
-                    args.putString("vendor_name", vendor_name);
-                    
-                    
-                    
-//                    args.putInt("vendor_id_key", vendorId);         /// how is the ID extracted?
-                    
-                    
-                    
-                    Navigation.findNavController(view).navigate(R.id.action_navigation_search_to_resultFragment, args);
-                }
-            });
             recyclerView.setAdapter(adapter);
             hideProgressBar();
         });
