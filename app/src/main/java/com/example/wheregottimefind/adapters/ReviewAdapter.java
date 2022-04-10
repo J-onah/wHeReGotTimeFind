@@ -1,8 +1,6 @@
 
 package com.example.wheregottimefind.adapters;
 
-
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,27 +22,19 @@ import com.example.wheregottimefind.R;
 
 import java.util.ArrayList;
 
-
-//https://www.youtube.com/watch?v=18VcnYN5_LM
-
-
-
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 
     private final static String TAG = "review_adapter";
     ArrayList<String> users, reviews, iUnit, product_name;
     ArrayList<Integer> iUnitsPurchased, rating;
     ArrayList<Double> iPrice_Per_Unit;
-    //ArrayList<Integer> productImages;
     ArrayList<String[]> productImages;
-
 
     String vendor_name;
 
     Context context, getActivity;
 
     private OnReviewListener this_onReviewListener;
-
 
     public ReviewAdapter(Context page, ArrayList<String> users_by_reviews, ArrayList<String> reviews_for_vendor, ArrayList<String[]> PdtImgs, ArrayList<Integer> UnitsPurchased, ArrayList<String> Unit, ArrayList<Double> Price_Per_Unit, ArrayList<String> ProductName, ArrayList<Integer> inputRatings, String vendor_name_input, OnReviewListener onReviewListener){
         this.context = page;
@@ -60,15 +50,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         this.vendor_name = vendor_name_input;
     }
 
-
-
-
-
-    //RecyclerView calls this method whenever it needs to create a new ViewHolder.
-    //The method creates and initializes the ViewHolder and its associated View,
-    //but does not fill in the view's contents—the ViewHolder has not yet been bound to
-    //specific data.
-
     @NonNull
     @Override
     public ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -78,15 +59,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         return new ReviewViewHolder(view, this_onReviewListener);
     }
 
-
-
-
-
-    //RecyclerView calls this method to associate a ViewHolder with data. The method fetches the appropriate data
-    //and uses the data to fill in the view holder's layout.
-    //For example, if the RecyclerView displays a list of names,
-    //the method might find the appropriate name in the list and fill in the view holder's
-    //TextView widget.
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
 
@@ -94,11 +66,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
         String unitText, unitsPurchasedText, pricePerUnitText, product_nameText;
         String reviewsByUsernameText;
-
-
-
-
-
 
         try{
             holder.username.setText(users.get(position));
@@ -111,6 +78,18 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             reviewsByUsernameText = "Review: " + reviews.get(position);
 
             holder.reviewsByUsername.setText(reviewsByUsernameText);
+            
+            if (reviews.get(position).substring(reviews.get(position).length() - 3).equals("...")){
+                holder.see_more_see_less.setText("Tap to See More");
+            }
+
+            else if (reviews.get(position).length() > 54){
+                holder.see_more_see_less.setText("Tap to See Less");
+            }
+
+            else{
+                holder.see_more_see_less.setText("");
+            }
 
         }
         catch(IndexOutOfBoundsException ex){
@@ -118,18 +97,9 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
 
         try{
-            //https://stackoverflow.com/questions/15683032/android-convert-base64-encoded-string-into-image-view
             byte[] decodedString = Base64.decode(productImages.get(position)[0].substring(22), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.productImage.setImageBitmap(decodedByte);
-//            holder.productImage.setScaleX((float) 0.2);
-//            holder.productImage.setScaleY((float) 0.2);
-
-
-
-
-            //holder.productImage.setImageResource(productImages.get(position)[0]);
-
         }
         catch(IndexOutOfBoundsException ex){
             holder.productImage.setImageResource(R.drawable.blank_extreme_small);
@@ -139,11 +109,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
 
         try{
-            unitText = "unit: " + iUnit.get(position);
+            unitText = "Unit: " + iUnit.get(position);
             holder.unit.setText(unitText);
         }
         catch(IndexOutOfBoundsException ex){
-            unitText = "unit: " + NIL;
+            unitText = "Unit: " + NIL;
             holder.unit.setText(unitText);
         }
 
@@ -203,14 +173,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         getActivity = context;
     }
 
-
-
-
-
-    //RecyclerView calls this method to get the size of the data set.
-    //For example, in an address book app, this might be the total number of addresses.
-    //RecyclerView uses this to determine when there are no more items that can be displayed.
-
     @Override
     public int getItemCount() {
 
@@ -218,15 +180,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
     }
 
-
-
     public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView username, reviewsByUsername, product_name;
         ImageView productImage;
         TextView unitsPurchased, unit, price_per_unit;
         RatingBar reviewRating;
-
+        
+        TextView see_more_see_less;
 
         OnReviewListener onReviewListener;
 
@@ -244,14 +205,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             reviewRating = itemView.findViewById(R.id.ReviewRating);
 
             this.onReviewListener = onReviewListener;
+            
+            see_more_see_less = itemView.findViewById(R.id.see_more_see_less);
 
-
-            //https://www.youtube.com/watch?v=69C1ljfDvl0
             itemView.setOnClickListener(this);
 
         }
 
-        //https://www.youtube.com/watch?v=69C1ljfDvl0
         @Override
         public void onClick(View view) {
             onReviewListener.onReviewClick(getBindingAdapterPosition(), ReviewAdapter.this);

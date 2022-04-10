@@ -7,8 +7,6 @@
     tools:context=".ui.search.PhotoFragment"
     android:orientation="horizontal">
 
-
-
     <HorizontalScrollView
                 android:id="@+id/HorizontalScroll"
                 android:layout_width="match_parent"
@@ -18,9 +16,6 @@
                 android:background="#ff202020"
                 app:layout_constraintRight_toRightOf="parent"
                 >
-
-
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewPhotos"
@@ -35,8 +30,5 @@
                     />
 
             </HorizontalScrollView>
-
-
-
 
 </RelativeLayout>
