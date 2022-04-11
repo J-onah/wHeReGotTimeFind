@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -382,10 +383,15 @@ public class NewReviewFragment extends Fragment {
                     };
                 }
 
-                Bitmap bitmap = ((BitmapDrawable)imageIV.getDrawable()).getBitmap();
-                bitmap = compressImage(bitmap , 32768);
-                imagesDataArr = RequestBody.create(MediaType.parse("text/plain"), (bitmapToBase64(bitmap)));
-                System.out.println(imagesDataArr);
+                BitmapDrawable drawable = (BitmapDrawable) imageIV.getDrawable();
+                if (drawable != null) {
+                    Bitmap bitmap = drawable.getBitmap();
+                    bitmap = compressImage(bitmap , 32768);
+                    imagesDataArr = RequestBody.create(MediaType.parse("text/plain"), (bitmapToBase64(bitmap)));
+                    System.out.println(imagesDataArr);
+                } else {
+                    imagesDataArr = RequestBody.create(MediaType.parse("text/plain"), "");
+                }
 
                 // -- Review Details
                 // Rating
