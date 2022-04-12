@@ -59,6 +59,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 prices=0;
                 ratings=1;
+                showProgressBar();
                 updateRecyclerView(searchtext);
             }
         });
@@ -69,6 +70,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 prices=0;
                 ratings=-1;
+                showProgressBar();
                 updateRecyclerView(searchtext);
             }
         });
@@ -78,6 +80,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 prices=1;
                 ratings=0;
+                showProgressBar();
                 updateRecyclerView(searchtext);
             }
         });
@@ -87,6 +90,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 prices=-1;
                 ratings=0;
+                showProgressBar();
                 updateRecyclerView(searchtext);
             }
         });
