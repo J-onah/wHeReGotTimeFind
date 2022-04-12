@@ -72,4 +72,7 @@
     <string name="price_high_to_low">Price: High to low</string>
     <string name="price_low_to_high">Price: Low to High</string>
     <string name="rating_low_to_high">Rating: Low to High</string>
+    <string name="auth_expired">Authentication token expired. Please login again.</string>
+    <string name="no_img_avail">No Images Available</string>
+    <string name="cannot_con_server">Unable to connect to server!</string>
 </resources>

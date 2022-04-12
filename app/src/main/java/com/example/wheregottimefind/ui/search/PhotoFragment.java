@@ -70,7 +70,7 @@ public class PhotoFragment extends Fragment{
             recyclerViewPhotos.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         } catch (NullPointerException ex) {
-            Toast.makeText(getActivity(), "No Images Available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.no_img_avail, Toast.LENGTH_SHORT).show();
         }
 
 

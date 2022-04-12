@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.navigation_search).setOnClickListener(view -> {
+            navController.navigate(R.id.navigation_search);
+        });
+
         // Hide bottom navigation when adding new review
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override

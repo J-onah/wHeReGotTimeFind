@@ -293,7 +293,7 @@ public class BackendApi {
         editor.putInt(context.getString(R.string.userid_key), -1);
         editor.apply();
 
-        Toast.makeText(context, "Authentication token expired. Please login again.", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.auth_expired, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(context, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
