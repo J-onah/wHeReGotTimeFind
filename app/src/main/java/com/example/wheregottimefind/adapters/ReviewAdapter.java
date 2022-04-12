@@ -103,7 +103,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             holder.productImage.setImageBitmap(decodedByte);
         }
         catch(IndexOutOfBoundsException ex){
-            holder.productImage.setImageResource(R.drawable.blank_extreme_small);
+            holder.productImage.setVisibility(View.INVISIBLE);
         }
         catch (Exception e) {
             Log.e(TAG, "Unable to handle images" + e);
