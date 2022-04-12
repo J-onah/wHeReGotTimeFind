@@ -45,13 +45,14 @@ public class SearchFragment extends Fragment {
         full_review_data = FullReviewData.getInstance();
         View root = binding.getRoot();
 
+        binding.searchResults.setVisibility(View.INVISIBLE);
+
         if (full_review_data.getAllReviews().size() != 0) {
             recyclerView = binding.searchResults;
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             adapter = new SearchResultAdapter(getContext(), full_review_data.getSearchResults(ratings));
             recyclerView.setAdapter(adapter);
         }
-
 
         Button highlowsorter = binding.highlowrating;
         highlowsorter.setOnClickListener(new View.OnClickListener() {
