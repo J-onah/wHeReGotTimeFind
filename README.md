@@ -21,7 +21,7 @@ WGTF aims to tackle this by creating a platform where users can review products 
 ## Quick links
 [Java code](https://github.com/iangohy/wHeReGotTimeFind/tree/main/app/src/main/java/com/example/wheregottimefind) - `app/src/main/com/example/wheregottimefind`
 
-[resources(Colour pallet, XML files, etc.)]( https://github.com/iangohy/wHeReGotTimeFind/tree/main/app/src/main/res) - `app/src/main/res`
+[resources(colour pallet, XML files, etc.)]( https://github.com/iangohy/wHeReGotTimeFind/tree/main/app/src/main/res) - `app/src/main/res`
 
 
 ## Bug reports
