@@ -8,7 +8,7 @@ There is a constant issue faced by SUTD students and staffs when sourcing for ha
 WGTF aims to tackle this by creating a platform where users can review products and vendors. This is to allow other users to access these reviews when looking for similar products and find out easily which vendors sell the items they need and any other information they would need about the vendor before making their purchases, such as consumers’ experiences regarding a certain vendor, based on the reviews and ratings given for that vendor. 
 
 
-## Members
+## Team 3D Members
  - [Ian Goh](https://github.com/iangohy)
  - [Tham Jit](https://github.com/asdfash)
  - [Jonah Yeo](https://github.com/J-onah)
