@@ -1,6 +1,6 @@
 # wHeReGotTimeFind
 Welcome to the github repo of wHeReGotTimeFind(WGTF)!
-This code covers the frontend (Android Studio), and is used in conjunction with code from https://github.com/YongZhengYew/infosys1D, which covers the backend (postgreSQL).
+This code covers the frontend (Android Studio), and is used in conjunction with code from https://github.com/YongZhengYew/wHeReGotTimeFind_backend, which covers the backend (postgreSQL).
 
 ## Summary
 There is a constant issue faced by SUTD students and staffs when sourcing for hardware and physical components required for projects and Fifth-Row activities. When searching for such resources, they are required to note the quotations and payment methods that can be provided by vendors for their claims with the school to be processed successfully. On top of this, they would need to compare online and physically for the availability of each product, their prices and whether they can be delivered in time. In addition, it is important that consumers purchase the products that are of good quality and are from vendors that have good reputation among the SUTD students and staffs. Thus, it would be necessary to search for the reliability of vendors that sell the products being looked for. All of these are tedious tasks that take up a lot of time which could have been used for working on the project itself.  
