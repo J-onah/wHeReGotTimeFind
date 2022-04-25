@@ -9,13 +9,13 @@ WGTF aims to tackle this by creating a platform where users can review products 
 
 
 ## Team 3D Members
- - [Ian Goh](https://github.com/iangohy)
- - [Tham Jit](https://github.com/asdfash)
- - [Jonah Yeo](https://github.com/J-onah)
- - [Tan Li Hui](https://github.com/t-lihui)
- - [Yong Zheng Yew](https://github.com/YongZhengYew)
- - [Kevin Teng](https://github.com/lemons4lyf)
- - [Yang Haocheng](https://github.com/yhc-666)
+ - [1005118 Ian Goh](https://github.com/iangohy)
+ - [1005036 Tham Jit](https://github.com/asdfash)
+ - [1005175 Jonah Yeo](https://github.com/J-onah)
+ - [1005310 Tan Li Hui](https://github.com/t-lihui)
+ - [1005155 Yong Zheng Yew](https://github.com/YongZhengYew)
+ - [1005262 Kevin Teng](https://github.com/lemons4lyf)
+ - [1004883 Yang Haocheng](https://github.com/yhc-666)
  
 
 ## Quick links
