@@ -1,4 +1,4 @@
-# wHeReGotTimeFind
+# wHereGotTimeFind
 Welcome to the github repo of wHeReGotTimeFind(WGTF)!
 This code covers the frontend (Android Studio), and is used in conjunction with code from https://github.com/YongZhengYew/wHeReGotTimeFind_backend, which covers the backend (postgreSQL).
 
